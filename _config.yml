@@ -69,5 +69,5 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/guotechfin/guotechfin.github.io.git
+  repository: git@github.com:guotechfin/guotechfin.github.io.git
   branch: master
