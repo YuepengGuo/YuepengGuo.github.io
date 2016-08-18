@@ -7,7 +7,7 @@ branches:
 before_install:
 - npm install
 before_script:
-- git config --global user.name 'guotechfin'
+- git config --global user.name 'guoyp03@gmail.com'
 - git config --global user.email 'guoyp03@gmail.com'
 - sed -i'' "s~git@github.com:guotechfin/guotechfin.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/guotechfin/guotechfin.github.io.git~"
   _config.yml
