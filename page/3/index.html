@@ -235,8 +235,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/12/Neurosis-and-Human-growth/" itemprop="url">
-                  Neurosis and Human growth
+                <a class="post-title-link" href="/2016/08/16/python91advice/" itemprop="url">
+                  python91advice
                 </a>
               
             
@@ -249,8 +249,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-12T08:01:25+08:00" content="2016-08-12">
-              2016-08-12
+            <time itemprop="dateCreated" datetime="2016-08-16T20:55:38+08:00" content="2016-08-16">
+              2016-08-16
             </time>
           </span>
 
@@ -279,7 +279,14 @@
       
         
           
-            
+            <h3 id="CH1-pythonic"><a href="#CH1-pythonic" class="headerlink" title="CH1 pythonic"></a>CH1 pythonic</h3><p>learn from pythonic framework, like Flask, generators</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">def quicksort(array):</div><div class="line">	less=[]; greater=[]</div><div class="line">	if len(array) &lt;=1:</div><div class="line">		return array</div><div class="line">	pivot = array.pop()</div><div class="line">	for x in array:</div><div class="line">		if x&lt;= pivot: less.append(x)</div><div class="line">		else: greater.append(x)</div><div class="line">	return quicksort(less)+[pivot]+quicksort(greater)</div><div class="line"></div><div class="line">a,b = b,a </div><div class="line"></div><div class="line">with open(path,&apos;r&apos;) as f:</div><div class="line">	do_something(f)</div><div class="line"></div><div class="line">print &apos;hello %(name)s!&apos; % &#123;&apos;name&apos;: &apos;Tom&apos;&#125;</div><div class="line"></div><div class="line">##</div><div class="line"></div><div class="line">from flask import Flask</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line">@app.route(&apos;/&apos;)</div><div class="line">def hello():</div><div class="line">    return &quot;Hi&quot;</div><div class="line"></div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    app.run()</div></pre></td></tr></table></figure>
+<p>包和模块的潮流是：</p>
+<ul>
+<li>包和模块的命名采用小写，单数形式，而且短小。</li>
+<li>包通常仅作为命名空间，如只包含空的<strong>init</strong>.py文件</li>
+</ul>
+
           
         
       
