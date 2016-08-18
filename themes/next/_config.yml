@@ -6,7 +6,7 @@
 favicon: /favicon.ico
 
 # Set default keywords (Use a comma to separate)
-keywords: "Hexo, NexT"
+keywords: "thinking and tools to make it real"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
@@ -120,7 +120,8 @@ font:
 # Social Links
 # Key is the link label showing to end users.
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
-#social:
+social:
+  GitHub: http://github.com/guotechfin
   #LinkLabel: Link
 
 
