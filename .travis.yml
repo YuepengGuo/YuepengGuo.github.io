@@ -11,6 +11,7 @@ before_script:
 - git config --global user.email 'guoyp03@gmail.com'
 - sed -i'' "s~git@github.com:guotechfin/guotechfin.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/guotechfin/guotechfin.github.io.git~"
   _config.yml
+- git submodule update --init --recursive  
 install:
 - npm run generate
 script:
