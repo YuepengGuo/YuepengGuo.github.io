@@ -1,0 +1,8 @@
+[submodule "themes/next"]
+	path = themes/next
+	url = git@github.com:guotechfin/hexo-theme-next.git
+	branch = master
+[submodule "themes/tranquilpeak"]
+	path = themes/tranquilpeak
+	url = git@github.com:guotechfin/tranquilpeak-hexo-theme.git
+	branch = master
