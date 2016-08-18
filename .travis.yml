@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+- '5'
+branches:
+  only:
+  - hexo
+before_install:
+- npm install
+before_script:
+- git config --global user.name 'guotechfin'
+- git config --global user.email 'guoyp03@gmail.com'
+- sed -i'' "s~git@github.com:guotechfin/guotechfin.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/guotechfin/guotechfin.github.io.git~"
+  _config.yml
+install:
+- npm run generate
+script:
+- npm run deploy
+env:
+  global:
+    secure: GpdRAdexXgRqtvv+012pfYwVGcKInsMdAo7jWXZ7UO2yyaUSoGhTBOCMGCmeLWEzntZUb6rrh2dhbzrp8PSxw68gAeS9DGyWr+2nttL+/9Tiu7N/ZvzusytzdApWTx0e6PlLKhsSW5DE9anX3aCUOuwi57xkJtsUwiNKXsPwUhTyj+kTfaGz15iJ9G6Ce1f9LrFkcySxiyDI67obbI8Tn6q1GrGnGX0kXTy6Q6rW0RSM+fRCI+uXsmpfmEioz0fghIrOZKkOqepW2qlPmvOFOmh7lze7STVAiBBEPJhsoVXvzyz/yQq7iw80MXJwEwoT9xqWgTcFldD6Ukmpb4Cos8cq/r+4FH/2HiYWnIEMxNzmZF8fbf95VTX76n1DfBlHepSAZm6i3oWdHwxhg/kX85MO3KysxIK4CZYD97hWw3YegRO+gXZMNlEva+cp09jA01Vx2nMTNLmnlEnzpVzSWV5wrhK8f9nd6MVYHuGVnHh84N80ii64eu+aS+en7Nf49QfSWnRzAjXqX5ASYzc9GOzcCY/4jX+ETkHShOIZ7N+p6z6y+zsh+XwdNksYYRLq+sbvgQ4DXQVts85X8/OeWexa/cCKdVe1Y5KKa6S+TR/ZdCx9IdkR6t3wSmgNGJde7RU8mfFkwbil6u4kvppBHHkrB0cB89L0Sv7mHJCdyEU=
