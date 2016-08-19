@@ -44,3 +44,24 @@ if __name__ == "__main__":
 包和模块的潮流是：
  + 包和模块的命名采用小写，单数形式，而且短小。
  + 包通常仅作为命名空间，如只包含空的__init__.py文件
+
+<!-- more -->
+
+```
+person_info={'name':'john','email':'xxx@gmail.com'}
+#check lang reference, and library reference.
+#say requests library
+
+import requests
+r = requests.get('https://api.github.com',auth=('user','pass'))
+print r.status_code
+print r.headers('content-type')
+
+#for code review just install pep8
+pip install -U pep8
+#then
+pep8 --first optparse.py
+#google use Pychecker do style guide check
+```
+
+
