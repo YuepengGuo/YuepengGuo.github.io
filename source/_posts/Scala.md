@@ -68,7 +68,7 @@ scala treats strings as higher-level sequences of characters that can be queried
 statically typed
 scala has a very sophisticated type inference system.
 
-
+<!-- more -->
 ### CH2 First steps in scala
 
 scala expression if(x>y) x else y behaves similarly to "(x>y)? x : y" in java.
