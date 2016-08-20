@@ -39,7 +39,7 @@ ar = np.arange(5)
 ar[::-1]
 
 ```
-
+<!-- more -->
 the default dtype in NumPy is float, in the case of string, dtype is the length of the longest string in the array.
 
 
@@ -68,3 +68,43 @@ ar[ar==' '] = 'USA'
 Copys vs views
 ar[:3].copy()
 
+# dot operator
+ar.dot(ar2)
+
+# transpose
+ar.T
+np.transpose(ar)
+
+#array equal
+np.array_equal(ar,ar2) 
+#or
+np.all(ar==ar2)
+
+#reduce
+ar=np.arange(1,5)
+ar.prod()
+np.prod(ar,axis=0)
+np.prod(ar,axis=1)
+ar.sum()
+ar.mean()
+np.median(ar)
+#statistics
+ar.mean()
+ar.std()
+ar.var(axis=0)
+ar.cumsum()
+#logical
+np.all(ar<11)
+np.any((ar%7)==0)
+
+broadcasting
+
+shape manipulation
+
+#flatten by
+ar.ravel()
+ar.T.ravel()
+ar.reshape(3,5)
+
+#array sort
+ar.sort(axis=1)
