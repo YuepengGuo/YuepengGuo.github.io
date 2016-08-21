@@ -108,3 +108,28 @@ ar.reshape(3,5)
 
 #array sort
 ar.sort(axis=1)
+
+
+Data Structures in pandas
+series : 1D NumPy with an array of lables.
+dataframe : 2D labeled array. a dataframe column is a series strcture. dictionary of both columns and rows are indexed.
+panel :  3D array (items->axis 0, major_axis->axis 1, minor_axis->axis 2)
+
+```
+USData = pd.DataFrame(np.array([[249.62,8900],[282.16,12680],[309.35,14940]]),
+                      columns=['Population(M)','GDP($B)'],
+                      index=[1990,2000,2010]
+                      )
+
+
+ChinaData = pd.DataFrame(np.array([[1133.68,390.28],[1266.83,1198.48],[1339.72,6988.47]]),
+                      columns=['Population(M)','GDP($B)'],
+                      index=[1990,2000,2010]
+                      )
+
+US_China_Data = {'US':USData,'China':ChinaData}
+
+p = pd.Panel(US_China_Data)
+
+```
+
