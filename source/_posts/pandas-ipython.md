@@ -133,3 +133,16 @@ p = pd.Panel(US_China_Data)
 
 ```
 
+Label,integer and mixed indexing
+
+table.loc[['Jan','April']]
+table.loc['Jan':'Mar']
+table.loc[:,table.loc['2013-Q1']>110]
+
+the .iloc operator supports interger-based position indexing, it accepts the following as inputs:
+.iloc[2,0:2] row2 , col [0-2)
+.iloc[2:3,:] row3 only
+.iloc[3]
+
+
+### CH5 operations in pandas
