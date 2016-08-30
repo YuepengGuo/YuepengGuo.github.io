@@ -146,3 +146,9 @@ the .iloc operator supports interger-based position indexing, it accepts the fol
 
 
 ### CH5 operations in pandas
+nationsGrp['Attendance'].agg({'Total':np.sum, 'Average':np.mean, 'Deviation':np.std})
+US_China_Data.groupby(level='Month').filter(lambda x:np.all([x[col] > 100 for col in US_China_Data.columns]))
+
+```
+https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.historicaldata where symbol = "002197.SZ" and startDate = "2016-01-01" and endDate = "2016-08-20"&format=json&diagnostics=true&env=store://datatables.org/alltableswithkeys&callback=
+```
