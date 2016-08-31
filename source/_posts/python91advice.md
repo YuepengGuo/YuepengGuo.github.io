@@ -62,6 +62,23 @@ pip install -U pep8
 #then
 pep8 --first optparse.py
 #google use Pychecker do style guide check
+
+from dateutil import tz
+from datetime import datetime
+
+# UTC Zone
+from_zone = tz.gettz('UTC')
+# China Zone
+to_zone = tz.gettz('Asia/Shanghai')
+
+utc = datetime.utcnow()
+
+# Tell the datetime object that it's in UTC time zone
+utc = utc.replace(tzinfo=from_zone)
+
+# Convert time zone
+local = utc.astimezone(to_zone)
+print datetime.strftime(local, "%Y-%m-%d %H:%M:%S")
 ```
 
 
