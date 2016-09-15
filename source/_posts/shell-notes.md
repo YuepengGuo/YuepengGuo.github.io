@@ -32,3 +32,7 @@ ctrl+z,bg,fg
 
 ### Screen
 Ctrl-a : resize 70
+
+### Brew service
+brew services start mysql
+
