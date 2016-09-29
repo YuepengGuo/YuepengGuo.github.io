@@ -43,4 +43,16 @@ To have launchd start mysql now and restart at login:
   brew services start mysql
 Or, if you don't want/need a background service you can just run:
   mysql.server start
+
+### To schedule a task that runs every N minutes ON WINDOWS
+```
+schtasks /create /tn <TaskName> /tr <TaskRun> /sc minute [/mo {1 - 1439}] [/st <HH:MM>] [/sd <StartDate>] [/ed <EndDate>] [{/et <HH:MM> | /du <HHHH:MM>} [/k]] [/it] [/ru {[<Domain>\]<User> [/rp <Password>] | System}] [/s <Computer> [/u [<Domain>\]<User> [/p <Password>]]]
+
+two examples
+
+schtasks /create /sc minute /mo 20 /tn "Security Script" /tr \\central\data\scripts\sec.vbs
+
+schtasks /create /tn "Security Script" /tr sec.vbs /sc minute /mo 100 /st 17:00 /et 08:00 /k
+
+```
  
