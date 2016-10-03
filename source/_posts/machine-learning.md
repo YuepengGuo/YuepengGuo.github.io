@@ -9,6 +9,7 @@ tags: 工具
 
 [Receiver operating characteristic](https://en.wikipedia.org/wiki/Receiver_operating_characteristic)
 [Receiver operating characteristic in Python](http://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html)
+[ROC Video](http://www.dataschool.io/roc-curves-and-auc-explained/)
 
  It is a plot of the True Positive Rate (on the y-axis) versus the False Positive Rate (on the x-axis) for every possible classification threshold. 
  As a reminder, the True Positive Rate answers the question, 
