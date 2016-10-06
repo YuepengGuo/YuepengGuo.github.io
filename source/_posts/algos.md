@@ -34,5 +34,5 @@ a = a ^ b
 b = a ^ b
 a = a ^ b
 
-Actually, we can deduct a and b by math equation if we know sum and substraction of a,b.
+Actually, we can deduct(推导) a and b by math equation if we know both sum and substraction of a,b.
 ```
