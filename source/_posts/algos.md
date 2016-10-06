@@ -4,7 +4,7 @@ date: 2016-10-06 14:07:22
 tags: 工具, algo
 ---
 
-##Mask
+## Mask
 
 ### masking bits to 1
 ```
