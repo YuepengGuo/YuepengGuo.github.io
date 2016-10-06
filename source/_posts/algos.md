@@ -26,4 +26,11 @@ Y AND 1 = Y
 Y XOR 1 = ~Y
 as
 Y XOR 11111111
+
+typical usage to swap two variables without...
+turn on/off
+
+a = a ^ b
+b = a ^ b
+a = a ^ b
 ```
