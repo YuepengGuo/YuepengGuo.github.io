@@ -36,3 +36,11 @@ a = a ^ b
 
 Actually, we can deduct(推导) a and b by math equation if we know both sum and substraction of a,b.
 ```
+
+## BST
+
+[Definition](https://en.wikipedia.org/wiki/Binary_search_tree)
+
+The tree additionally satisfies the binary search tree property, which states that 
+ + the key in each node must be greater than all keys stored in the left sub-tree, 
+ + and smaller than all keys in the right sub-tree.
