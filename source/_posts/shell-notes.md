@@ -55,4 +55,12 @@ schtasks /create /sc minute /mo 20 /tn "Security Script" /tr \\central\data\scri
 schtasks /create /tn "Security Script" /tr sec.vbs /sc minute /mo 100 /st 17:00 /et 08:00 /k
 
 ```
+
+### Set TimeZone on ubuntu
+
+```
+sudo dpkg-reconfigure tzdata
+```
+
+
  
