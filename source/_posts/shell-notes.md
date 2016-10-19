@@ -62,5 +62,24 @@ schtasks /create /tn "Security Script" /tr sec.vbs /sc minute /mo 100 /st 17:00 
 sudo dpkg-reconfigure tzdata
 ```
 
+### yesterday on bash
+
+```
+ddate=`date -d "yesterday" '+%Y-%m-%d'`
+echo $ddateta
+
+#onpython
+from datetime import datetime , timedelta
+import pytz
+
+#get yesterday as fetching parameters
+today = datetime.now(pytz.timezone('Asia/Shanghai'))
+
+yesterday = today - timedelta(1)
+# ddate = yesterday.astimezone(to_zone).strftime("%Y-%m-%d")
+
+ddate = datetime.strftime(yesterday, "%Y-%m-%d")
+
+```
 
  
