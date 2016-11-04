@@ -82,4 +82,8 @@ ddate = datetime.strftime(yesterday, "%Y-%m-%d")
 
 ```
 
+### Port
+```
+netstat -ntlp | grep LISTEN
+```
  
