@@ -30,7 +30,53 @@ MATCH (:Person {name: "Ann"}) - [:FB_FRIENDS] -> (:Person {name:"Dan"})
 ```
 
 
+#### Concept
+Nodes
+Relationships
+Properties
+
+Nodes can be grouped together by applying a label to each memeber.
+ like Color "Person" nodes red
+A Node can have zero or more labels.
+labels do not have any properties.
+
+The real power of Neo4j is connected data.
+
+Relationship always have direction.
+Relationship always have a type.
+Relationship forms patterns of data.
+
+Relationship can contains properties.
 
 
+Cypher -- Neo4j's graph query language
 
+```
+#create
+CREATE (ee:Person { name: "Emil", from: "Sweden", klout: 99 })
+MATCH (ee:Person) WHERE ee.name = "Emil" RETURN ee;
+MATCH (ee:Person) WHERE ee.name = "Emil"
+CREATE (js:Person { name: "Johan", from: "Sweden", learn: "surfing" }),
+(ir:Person { name: "Ian", from: "England", title: "author" }),
+(rvb:Person { name: "Rik", from: "Belgium", pet: "Orval" }),
+(ally:Person { name: "Allison", from: "California", hobby: "surfing" }),
+(ee)-[:KNOWS {since: 2001}]->(js),(ee)-[:KNOWS {rating: 5}]->(ir),
+(js)-[:KNOWS]->(ir),(js)-[:KNOWS]->(rvb),
+(ir)-[:KNOWS]->(js),(ir)-[:KNOWS]->(ally),
+(rvb)-[:KNOWS]->(ally)
 
+#pattern matching
+
+MATCH (ee:Person)-[:KNOWS]-(friends)
+WHERE ee.name = "Emil" RETURN ee, friends
+
+#pattern matching for recommendations
+#Johan is learning to surf, so he may want to find a new friend who already does:
+
+MATCH (js:Person)-[:KNOWS]-()-[:KNOWS]-(surfer)
+WHERE js.name = "Johan" AND surfer.hobby = "surfing"
+RETURN DISTINCT surfer
+
+#Movie
+
+```
