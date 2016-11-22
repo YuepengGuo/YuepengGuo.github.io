@@ -8,6 +8,7 @@ top: 100
 ### CH1 A Scalable Language
 
  #### growing new type
+ 
 
 An example, scala.BigInt: arbitrarily large without overflow 
 ```
