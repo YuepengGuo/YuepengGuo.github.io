@@ -44,3 +44,4 @@ Producers sending compressed messages will compress the batch together and send 
 
 KAFKA CONSUMERS AND ZOOKEEPER
 Prior to Apache Kafka 0.9.0.0, consumers, in addition to the brokers, utilized Zookeeper, to directly store information about the composition of the consumer group, what topics it was consuming, and to periodically commit offsets for each partition being consumed (to enable failover between consumers in the group). With version 0.9.0.0, a new consumer interface was introduced that allows this to be managed directly with the Kafka brokers.
+
