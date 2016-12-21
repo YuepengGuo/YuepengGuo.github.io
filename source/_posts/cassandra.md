@@ -128,5 +128,11 @@ SET "total_views" = "total_views" + 1,
     "web_views" = "web_views" + 1
 WHERE "year" = 2014
   AND "date" = '2014-10-05';
+
+INSERT INTO TABLE daily_aggregate_temp
+SELECT wsid,year, month,day,max(temp) high, min(temp) low
+FROM raw_temp_data
+GROUP BY wsid, year, month, day;
+
 ```
 
