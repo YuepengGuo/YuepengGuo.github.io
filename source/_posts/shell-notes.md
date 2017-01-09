@@ -87,3 +87,7 @@ ddate = datetime.strftime(yesterday, "%Y-%m-%d")
 netstat -ntlp | grep LISTEN
 ```
  
+Login Shells:
+
+  * [Bash Configurations Demystified](http://dghubble.com/blog/posts/.bashprofile-.profile-and-.bashrc-conventions/).
+  * [Bash Startup Files](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html).
