@@ -6,10 +6,6 @@ tags: links
 
 # Best Articles for reference later.
 
-## Linux
-
-### Shell
- 
 Login Shells:
 
   * [Bash Configurations Demystified](http://dghubble.com/blog/posts/.bashprofile-.profile-and-.bashrc-conventions/).
@@ -18,5 +14,6 @@ Login Shells:
 Git:
 
   * [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/).
+  * [Git flow cheatsheet](http://danielkummer.github.io/git-flow-cheatsheet/).
 
 
