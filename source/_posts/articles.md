@@ -15,9 +15,8 @@ Login Shells:
   * [Bash Configurations Demystified](http://dghubble.com/blog/posts/.bashprofile-.profile-and-.bashrc-conventions/).
   * [Bash Startup Files](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html).
 
-Numbered list:
+Git:
 
-  1. apples
-  2. oranges
-  3. 
+  * [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/).
+
 

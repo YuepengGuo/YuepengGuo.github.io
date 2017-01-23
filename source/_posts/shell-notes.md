@@ -91,3 +91,12 @@ Login Shells:
 
   * [Bash Configurations Demystified](http://dghubble.com/blog/posts/.bashprofile-.profile-and-.bashrc-conventions/).
   * [Bash Startup Files](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html).
+
+
+Daily shells:
+```
+find . -name *.xml | xargs grep error
+grep -i 'amazon\.(de\|com)'  --color
+nohup sh -c 'ls -f images/ | wc -l ' 2>&1 >> images.num &
+nohup find /images/ -type f -mtime +5 -delete &
+```
