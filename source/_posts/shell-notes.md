@@ -100,3 +100,8 @@ grep -i 'amazon\.(de\|com)'  --color
 nohup sh -c 'ls -f images/ | wc -l ' 2>&1 >> images.num &
 nohup find /images/ -type f -mtime +5 -delete &
 ```
+
+Git Flow
+```
+git log --author="someone" --reverse
+```
