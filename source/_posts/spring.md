@@ -31,3 +31,7 @@ A Transaction can have only one User entity.
 
 We can then deduce the two annotations: @OneToMany in User and @ManyToOne in Transactions.
 
+
+JoinColumns are nothing but a Foreign Key Columns.
+JPA calls them Join Columns, possibly because they are more verbose in what their actual role is, to join the two entities using a common column.
+

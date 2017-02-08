@@ -16,4 +16,7 @@ Git:
   * [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/).
   * [Git flow cheatsheet](http://danielkummer.github.io/git-flow-cheatsheet/).
 
+JPA:
+
+  * [JPA relationship](http://www.kumaranuj.com/2013/05/jpa-2-understanding-relationships.html).
 
