@@ -18,7 +18,7 @@ Check
 Keywords: 
 
 Role,Direction(unidirectional,bidirectional),Cardinality,Ordinality.
-Owner Entity, Non-owner Entity.
+Owner Entity, Non-owner Entity, Source, Target.
 
 ```
 @Entity
@@ -58,3 +58,74 @@ public class Employee implements Serializable{
 	//otherwise, default name will be department_id
 }
 ```
+
+### Bidirectional OneToOne Mapping.
+
+We know that the owner always have a JoinColumn annotation. In the case of OneToOne mapping, any entity can be the owner. The other non-owner entity then has to provide the mappedBy attribute value to indicate that it is not the owner of the relationship. 
+
+```
+@Entity
+public class Job {
+    @Id private int id;
+    private String designation;
+    private String location;
+    @OneToOne(mappedBy="job")
+    private Person person;
+    //the mappedBy attribute refers to the attribute name job, defined in the source entity Person.
+}
+```
+
+### OneToMany
+
+```
+@Entity
+public class Book {
+    @Id private int id;
+    @OneToMany
+    @JoinColumn(name="BOOK_ID") // BOOK_ID exists in the BookMark table
+    private List bookMarks;
+    // ... 
+}
+```
+
+### Bidirectional OneToMany Mapping
+
+When the relationship is bidirectional, there are normally two associations defined : 
+one from source to target entity(having the JoinColumn annotation) , 
+and the other from target to source entity(having the mapped by attribute ). 
+OneToMany bidirectional mapping always implies a ManyToOne mapping back to the source. 
+Another important thing to remember from the previous discussion about ManyToOne mapping is that if theres is a ManyToOne mapping, then the JoinColumn annotation will always be defined on the ManyToOne mapping attribute. Thus in case of Bidirectional OneToMany mapping, the JoinColumn will exists on the entity having ManyToOne annotation. 
+
+
+### Bidirectional ManyToMany Mapping
+
+We do that by defining the mappedBy attribute of the relationship on the target entity. 
+Note that since the multiplicity of both the sides of the relationship is plural, it is not possible(or feasible/correct) to store an iunlimited set of foreign key values in a single entity row. 
+We should use the third table to associate the two entities. 
+This third table is called the ~~JoinTable~~. 
+A Join Table is a requirement for a ManyToMany relationship. 
+A JoinTable consists of the Primary Keys from both the entities and nothing else. Here is an example of ManyToMany relationship from Pro JPA2 book.
+
+![](/images/ManyToMany.png)
+
+In the above example, the Employee and Project table are two entities related with ManyToMany relationship. EMP_PROJ table is the JoinTable that is used to store the entity reference for each of the table.
+In JPA, we use the @JoinTable annotation to define a Join Table for the Many to Many relationship. Here is an example
+
+```java
+@Entity
+public class Employee {
+    @Id private int id;
+    private String name;
+    @ManyToMany
+    @JoinTable(name="EMP_PROJ",
+          joinColumns=@JoinColumn(name="EMP_ID"),
+          inverseJoinColumns=@JoinColumn(name="PROJ_ID"))
+    private Collection projects;
+    // ...
+}
+```
+
+* The JoinTable annotation has a name attribute which corresponds to the name of the Join Table. It also has two other attributes :
+
+- joinColumns which is the column name of the owning Entity
++ inverseJoinColumns which is the column name of the inverse or non owning Entity. 
