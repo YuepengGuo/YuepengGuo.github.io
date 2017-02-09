@@ -15,6 +15,10 @@ Entity reflect database foreign keys and relationship in class attributes.
 Check 
 [OneToMany docs](http://docs.oracle.com/javaee/7/api/javax/persistence/OneToMany.html).
 
+Keywords: 
+
+Role,Direction(unidirectional,bidirectional),Cardinality,Ordinality.
+Owner Entity, Non-owner Entity.
 
 ```
 @Entity
@@ -35,3 +39,22 @@ We can then deduce the two annotations: @OneToMany in User and @ManyToOne in Tra
 JoinColumns are nothing but a Foreign Key Columns.
 JPA calls them Join Columns, possibly because they are more verbose in what their actual role is, to join the two entities using a common column.
 
+```
+@Entity
+public class Employee implements Serializable{
+	@ManyToOne
+	private Department department;
+}
+
+/**or**/
+/**ManyToOne mapping are defined on the owner entity.**/
+@Entity
+public class Employee implements Serializable{
+	@Id private int id;
+
+	@ManyToOne
+	@JoinColumn(name="DEPT_ID")
+	private Department department;
+	//otherwise, default name will be department_id
+}
+```
