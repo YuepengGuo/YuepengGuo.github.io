@@ -140,3 +140,37 @@ Eric Evans "Domain Driven Design"
 * [SpecificationArgumentResolver with Filter Spec](http://blog.kaczmarzyk.net/2014/03/23/alternative-api-for-filtering-data-with-spring-mvc-and-spring-data/).
 
 * [Easy Pagination with Spring Boot](http://ankushs92.github.io/tutorial/2016/05/03/pagination-with-spring-boot.html).
+
+
+## Exception Handler
+
+* [@ControllerAdvice](https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc)
+* [Demo of Exception](http://mvc-exceptions-v2.cfapps.io/)
+
+
+## CommandLineRunner#init
+
+```java 
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+
+    @Bean
+  CommandLineRunner init(CustomerRespository repo) {
+  return (evt) ->  {
+    repo.save(new Customer("Adam","adam@boot.com"));
+    repo.save(new Customer("John","john@boot.com"));
+    repo.save(new Customer("Smith","smith@boot.com"));
+    repo.save(new Customer("Edgar","edgar@boot.com"));
+    repo.save(new Customer("Martin","martin@boot.com"));
+    repo.save(new Customer("Tom","tom@boot.com"));
+    repo.save(new Customer("Sean","sean@boot.com"));
+  };
+  }
+}
+```
+
+## Actuators monitor and manage boot application
+
