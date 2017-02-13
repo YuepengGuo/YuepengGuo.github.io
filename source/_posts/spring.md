@@ -129,3 +129,10 @@ public class Employee {
 
 - joinColumns which is the column name of the owning Entity
 + inverseJoinColumns which is the column name of the inverse or non owning Entity. 
+
+
+## Spring web data jpa filter
+
+* [An alternative API for filtering data with Spring MVC & Spring Data JPA](http://blog.kaczmarzyk.net/2014/03/23/alternative-api-for-filtering-data-with-spring-mvc-and-spring-data/).
+
+* [Easy Pagination with Spring Boot](http://ankushs92.github.io/tutorial/2016/05/03/pagination-with-spring-boot.html).
