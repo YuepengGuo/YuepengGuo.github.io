@@ -35,7 +35,7 @@ A Transaction can have only one User entity.
 
 We can then deduce the two annotations: @OneToMany in User and @ManyToOne in Transactions.
 
-
+<!-- more -->
 JoinColumns are nothing but a Foreign Key Columns.
 JPA calls them Join Columns, possibly because they are more verbose in what their actual role is, to join the two entities using a common column.
 
@@ -131,7 +131,11 @@ public class Employee {
 + inverseJoinColumns which is the column name of the inverse or non owning Entity. 
 
 
-## Spring web data jpa filter
+## JPA Criteria
+
+to build query programmatically, define where clause of a query for a domain class.
+
+Eric Evans "Domain Driven Design"
 
 * [SpecificationArgumentResolver with Filter Spec](http://blog.kaczmarzyk.net/2014/03/23/alternative-api-for-filtering-data-with-spring-mvc-and-spring-data/).
 
