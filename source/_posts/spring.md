@@ -174,3 +174,10 @@ public class Application {
 
 ## Actuators monitor and manage boot application
 
+
+## Richardson's maturity model
+
++ level 0 : http
++ level 1 : resources
++ level 2 : http verbs
++ level 3 : hypermedia controls (make it discoverable through the use of hyperlinks, like HATEOAS)
