@@ -4,19 +4,22 @@ date: 2016-12-26 10:11:48
 tags: links
 ---
 
-# Best Articles for reference later.
+## Best Articles for reference later.
 
-Login Shells:
+### Login Shells:
 
   * [Bash Configurations Demystified](http://dghubble.com/blog/posts/.bashprofile-.profile-and-.bashrc-conventions/).
   * [Bash Startup Files](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html).
 
-Git:
+### Git:
 
   * [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/).
   * [Git flow cheatsheet](http://danielkummer.github.io/git-flow-cheatsheet/).
 
-JPA:
+### JPA:
 
   * [JPA relationship](http://www.kumaranuj.com/2013/05/jpa-2-understanding-relationships.html).
 
+### Maven:
+
+  * [Maven: The Complete Reference](http://books.sonatype.com/mvnref-book/reference/index.html).
