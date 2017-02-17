@@ -183,3 +183,10 @@ public class Application {
 + level 1 : resources
 + level 2 : http verbs
 + level 3 : hypermedia controls (make it discoverable through the use of hyperlinks, like HATEOAS)
+
+
+## view resolver
+
+### render
+
+[Spring MVC](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-spring-mvc.html).
