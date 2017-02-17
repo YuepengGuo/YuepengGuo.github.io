@@ -23,6 +23,7 @@ tags: links
 ### Maven:
   * [Apache Maven Docs](https://maven.apache.org/index.html).
   * [Maven: The Complete Reference](http://books.sonatype.com/mvnref-book/reference/index.html).
+  * [Maven: Lifecycle ](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html).
 
 ### Spring:
 
