@@ -190,3 +190,11 @@ public class Application {
 ### render
 
 [Spring MVC](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-spring-mvc.html).
+
+## Logging
+
+[Spring Logging](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html).
+
+
+
+
