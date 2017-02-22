@@ -202,7 +202,7 @@ public class Application {
 [Spring Events](https://www.keyup.eu/en/blog/101-synchronous-and-asynchronous-spring-events-in-one-application).
 
 
-### run in community intellij
+## run in community intellij
 
 we can do it with embedded tomcat
 
@@ -218,6 +218,11 @@ mvn tomcat7:run
     </configuration>
 </plugin>
 ```
+
+## Spring Server-Sent Events
+
+opening an HTTP connection for receiving push notifications from a server in the form of DOM events.
+
 
 
 
