@@ -196,5 +196,9 @@ public class Application {
 [Spring Logging](http://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html).
 
 
+## Events
+
+[Spring Events](http://zoltanaltfatter.com/2016/05/11/application-events-with-spring/).
+
 
 
