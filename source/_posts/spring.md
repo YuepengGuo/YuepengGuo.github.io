@@ -199,6 +199,8 @@ public class Application {
 ## Events
 
 [Spring Events](http://zoltanaltfatter.com/2016/05/11/application-events-with-spring/).
+[Spring Events](https://www.keyup.eu/en/blog/101-synchronous-and-asynchronous-spring-events-in-one-application).
+
 
 
 
