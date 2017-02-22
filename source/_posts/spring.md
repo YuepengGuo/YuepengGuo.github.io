@@ -206,6 +206,8 @@ public class Application {
 
 we can do it with embedded tomcat
 
+mvn tomcat7:run
+
 ```xml
 <plugin>
     <groupId>org.apache.tomcat.maven</groupId>
@@ -216,6 +218,7 @@ we can do it with embedded tomcat
     </configuration>
 </plugin>
 ```
+
 
 
 
