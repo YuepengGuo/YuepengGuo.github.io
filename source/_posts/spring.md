@@ -202,5 +202,20 @@ public class Application {
 [Spring Events](https://www.keyup.eu/en/blog/101-synchronous-and-asynchronous-spring-events-in-one-application).
 
 
+### run in community intellij
+
+we can do it with embedded tomcat
+
+```xml
+<plugin>
+    <groupId>org.apache.tomcat.maven</groupId>
+    <artifactId>tomcat7-maven-plugin</artifactId>
+    <version>2.2</version>
+    <configuration>
+        <path>/</path>
+    </configuration>
+</plugin>
+```
+
 
 
