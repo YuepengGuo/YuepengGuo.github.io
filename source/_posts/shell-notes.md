@@ -105,3 +105,9 @@ Git Flow
 ```
 git log --author="someone" --reverse
 ```
+
+### Maven
+
+```bash
+mvn help:effective-pom > eff.txt
+```
