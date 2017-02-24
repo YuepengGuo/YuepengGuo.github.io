@@ -224,6 +224,13 @@ mvn tomcat7:run
 opening an HTTP connection for receiving push notifications from a server in the form of DOM events.
 
 
+## Spring Boot Starters
 
+[Spring Starters](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-starters/spring-boot-starter-web/pom.xml).
 
+[Starters Providers](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-starters/spring-boot-starter-web/src/main/resources/META-INF/spring.provides).
+
+By having this starter as our dependency, we will transitively get the ... dependency libraries in our build.
+
+The starter POM file itself does not add JAR dependencies to the project. Instead, it will only add library versions. Subsequently, when dependencies are added to the POM file, they refer to the library versions from this POM file
 

@@ -110,4 +110,7 @@ git log --author="someone" --reverse
 
 ```bash
 mvn help:effective-pom > eff.txt
+
+mvn archetype:generate
+
 ```
