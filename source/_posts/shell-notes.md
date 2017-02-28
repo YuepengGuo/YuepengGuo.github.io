@@ -114,3 +114,8 @@ mvn help:effective-pom > eff.txt
 mvn archetype:generate
 
 ```
+
+### Hadoop
+```sql
+describe formatted  user_profile;
+```
