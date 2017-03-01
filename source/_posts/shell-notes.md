@@ -184,6 +184,9 @@ mysql> CREATE DATABASE metastore;
 mysql> USE metastore;
 mysql> CREATE USER 'hive'@'localhost' IDENTIFIED BY 'password';
 mysql> GRANT SELECT,INSERT,UPDATE,DELETE,ALTER,CREATE ON metastore.* TO 'hive'@'localhost';
+
+remember to start hive metastore in background
+hive --service metastore &
 ```
 
 
