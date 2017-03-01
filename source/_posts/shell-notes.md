@@ -33,16 +33,19 @@ ctrl+z,bg,fg
 ### Screen
 Ctrl-a : resize 70
 
-### Brew service
-brew services start mysql
+### MYSQL
+```bash
+#set password
+sudo mysqld_safe --skip-grant-tables
+#open new terminal
+mysql -u root
+##old version
+##UPDATE mysql.user SET Password=PASSWORD('new-password') WHERE User='root';
+UPDATE mysql.user SET authentication_string=PASSWORD("new-password") WHERE User='root';
+FLUSH PRIVILEGES;
+quit;
+```
 
-To connect run:
-    mysql -uroot
-
-To have launchd start mysql now and restart at login:
-  brew services start mysql
-Or, if you don't want/need a background service you can just run:
-  mysql.server start
 
 ### To schedule a task that runs every N minutes ON WINDOWS
 ```
@@ -128,9 +131,17 @@ filename:FileInputFormat.java package org.apache.hadoop.mapred org:apache
 
 
 
-### Hive
-My mac env
+### My MAC ENV
+
 ```
 /usr/local/Cellar/hadoop
 /usr/local/Cellar/hive
+/usr/local/Cellar/mysql
+/usr/local/Cellar/mongo
+
+##instance
+/usr/local/var/mysql
+
+#LaunchAgents
+sudo rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
 ```
