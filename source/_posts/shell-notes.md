@@ -157,6 +157,11 @@ mvn archetype:generate
  </configuration>
 ```
 
+links for my hadoop
+ + Resource Manager: http://localhost:50070
+ + JobTracker: http://localhost:8088
+ + Specific Node Information: http://localhost:8042
+
 ```sql
 describe formatted  user_profile;
 ```
