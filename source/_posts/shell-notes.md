@@ -125,3 +125,12 @@ search file in github.com
 ```
 filename:FileInputFormat.java package org.apache.hadoop.mapred org:apache
 ```
+
+
+
+### Hive
+My mac env
+```
+/usr/local/Cellar/hadoop
+/usr/local/Cellar/hive
+```
