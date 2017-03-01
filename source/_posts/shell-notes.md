@@ -134,6 +134,8 @@ filename:FileInputFormat.java package org.apache.hadoop.mapred org:apache
 ### My MAC ENV
 
 ```
+brew services list
+mysql -u root -p lock
 /usr/local/Cellar/hadoop
 /usr/local/Cellar/hive
 /usr/local/Cellar/mysql
