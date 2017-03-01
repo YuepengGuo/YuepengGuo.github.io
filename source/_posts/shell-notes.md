@@ -157,6 +157,12 @@ mvn archetype:generate
  </configuration>
 ```
 
+format namenode before start hadoop
+
+```
+hdfs namenode -format
+```
+
 links for my hadoop
  + Resource Manager: http://localhost:50070
  + JobTracker: http://localhost:8088
