@@ -118,17 +118,62 @@ mvn archetype:generate
 
 ```
 
-### Hadoop
+### Hadoop Config and commands
+
+#### core-site
+```xml
+<configuration>
+  <property>
+     <name>hadoop.tmp.dir</name>  
+     <value>/usr/local/Cellar/hadoop/hdfs/tmp</value>
+    <description>A base for other temporary directories.</description>
+  </property>
+  <property>
+     <name>fs.default.name</name>                                     
+     <value>hdfs://localhost:9000</value>                             
+  </property>                                                       
+</configuration> 
+```
+
+#### mapred-site
+
+```xml
+<configuration>
+       <property>
+         <name>mapred.job.tracker</name>
+         <value>localhost:9010</value>
+       </property>
+ </configuration>
+```
+
+#### hdfs-site
+
+```xml
+<configuration>
+    <property>
+      <name>dfs.replication</name>
+      <value>1</value>
+     </property>
+ </configuration>
+```
+
 ```sql
 describe formatted  user_profile;
 ```
 
-search file in github.com
+### search file in github.com
 
 ```
 filename:FileInputFormat.java package org.apache.hadoop.mapred org:apache
 ```
 
+### Hive
+```
+mysql> CREATE DATABASE metastore;
+mysql> USE metastore;
+mysql> CREATE USER 'hive'@'localhost' IDENTIFIED BY 'password';
+mysql> GRANT SELECT,INSERT,UPDATE,DELETE,ALTER,CREATE ON metastore.* TO 'hive'@'localhost';
+```
 
 
 ### My MAC ENV
