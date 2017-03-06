@@ -15,6 +15,7 @@ tags: links
 
   * [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/).
   * [Git flow cheatsheet](http://danielkummer.github.io/git-flow-cheatsheet/).
+  * [Git refs](https://www.atlassian.com/git/tutorials/refs-and-the-reflog).
 
 ### JPA:
 

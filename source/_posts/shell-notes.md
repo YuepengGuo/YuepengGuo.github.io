@@ -161,6 +161,10 @@ git push origin InitMove
 
 run python script to merge and close PR.
 
+
+#### remove ?
+git push origin :ShowOldVersion
+
 ```
 
 ### Maven
@@ -259,4 +263,11 @@ mysql -u root -p lock
 
 #LaunchAgents
 sudo rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+
+
+### SSH -KEY 
+```
+pbcopy < ~/.ssh/id_rsa.pub
+##show fingerprint
+ssh-keygen -lf /path/to/ssh/key
 ```
