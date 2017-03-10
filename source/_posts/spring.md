@@ -234,3 +234,17 @@ By having this starter as our dependency, we will transitively get the ... depen
 
 The starter POM file itself does not add JAR dependencies to the project. Instead, it will only add library versions. Subsequently, when dependencies are added to the POM file, they refer to the library versions from this POM file
 
+
+## Beans
+
+```
+@Value("${github.token}")
+String githubToken;
+
+
+@Bean
+public GitHubTemplate gitHubTemplate(){
+    return new GitHubTemplate(githubToken);
+}
+```
+
