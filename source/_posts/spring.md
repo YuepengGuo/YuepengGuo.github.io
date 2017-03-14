@@ -250,6 +250,10 @@ public GitHubTemplate gitHubTemplate(){
 
 ## AttributeConverter
 
+[Spring JPA Attribute Converter](http://www.thoughts-on-java.org/jpa-21-how-to-implement-type-converter/).
+
+
+
 ```
 package org.hibernate.test.converter.map;
 
