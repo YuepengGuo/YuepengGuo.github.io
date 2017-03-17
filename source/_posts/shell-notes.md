@@ -111,19 +111,9 @@ nohup find /images/ -type f -mtime +5 -delete &
 ### Git Flow
 
 ```
-git log --author="someone" --reverse
-
-git checkout -b MERGIN_PR_1
-
-git apply ~/Desktop/1.patch
-
-git checkout origin/master -b master
-
 git remote add apache-github https://github.com/apache/incubator-xxx.git
 
 git branch -D master
-
-git pull apache-github/master -b master
 
 git checkout apache-github/master -b master
 
@@ -135,39 +125,18 @@ git commit -am "[MINOR] Modify README.md"
 
 git remote add apache-git https://git-wip-us.apache.org/repos/asf/incubator-xxx.git
 
-git push apache-git master
-
-git checkout apache-git/master -b master
-
-#steps: step 1 create a branch feature_branch
-git checkout -b InitMove
-
-
-#steps: step 2 change your code and push to this new branch
-git push origin InitMove
-
-#steps: step 3 send pull request to apache-git
-
-#steps: step 3.1 merge in
-
-#steps: step 4 from apache-git master branch
-
-git checkout apache-git/master master
-
-git commit -am "fix conflict"
-
-
-#steps: step 5 push to apache new branch
-
-git push origin InitMove
-
-#steps: step 6 
-
-run python script to merge and close PR.
-
-
-#### remove ?
+# remove ? by git commitspec
 git push origin :ShowOldVersion
+
+### flow
+git branch -D master
+git checkout apache-git/master -b master
+git pull apache-git master
+git checkout -b MergeScript
+git add .
+git commit -am "Chmod +x on merge script"
+git push origin MergeScript
+./merge_pr.py
 
 ```
 
