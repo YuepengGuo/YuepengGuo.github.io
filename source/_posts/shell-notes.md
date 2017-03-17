@@ -104,6 +104,10 @@ nohup sh -c 'ls -f images/ | wc -l ' 2>&1 >> images.num &
 nohup find /images/ -type f -mtime +5 -delete &
 ```
 
+### Gitflow PR
+  * [PR Tutorial](https://www.thinkful.com/learn/github-pull-request-tutorial/).
+
+
 ### Git Flow
 
 ```
