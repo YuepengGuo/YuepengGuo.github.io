@@ -147,6 +147,8 @@ mvn help:effective-pom > eff.txt
 
 mvn archetype:generate
 
+mvn dependency:tree -Dverbose -Dincludes=javax.servlet
+
 ```
 
 ### Hadoop Config and commands
@@ -225,6 +227,7 @@ hive --service metastore &
 
 ```
 brew services list
+brew services start elasticsearch
 mysql -u root -p lock
 /usr/local/Cellar/hadoop
 /usr/local/Cellar/hive
