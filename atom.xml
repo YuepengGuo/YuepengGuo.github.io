@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>逻辑下的数据</title>
+  <subtitle>Mushin (No Mind)</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-05-08T06:19:54.754Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>简单复杂哥</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>elasticsearch</title>
+    <link href="http://yoursite.com/2017/05/04/elasticsearch/"/>
+    <id>http://yoursite.com/2017/05/04/elasticsearch/</id>
+    <published>2017-05-04T00:50:18.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">curl -XPUT <span class="string">"http://localhost:9200/movies/movie/1"</span> <span class="_">-d</span><span class="string">'</span></div><div class="line">&#123;</div><div class="line">    "title": "The Godfather",</div><div class="line">    "director": "Francis Ford Coppola",</div><div class="line">    "year": 1972</div><div class="line">&#125;'</div><div class="line"></div><div class="line">curl -XGET <span class="string">"http://localhost:9200/movies/movie/1"</span> <span class="_">-d</span><span class="string">''</span></div><div class="line"></div><div class="line">curl -XDELETE <span class="string">"http://localhost:9200/movies/movie/1"</span> <span class="_">-d</span><span class="string">''</span></div><div class="line"></div><div class="line">curl ...:9200/names/name -XPOST <span class="_">-d</span> <span class="string">'&#123;</span></div><div class="line">        "userId": 10,</div><div class="line">        "name": &#123;</div><div class="line">            "first": "Katherine",</div><div class="line">            "last": "Jones"</div><div class="line">        &#125;,</div><div class="line">        "tags": ["trick manager", "restaurant manager"]</div><div class="line">    &#125;'</div><div class="line"></div><div class="line"> <span class="comment">##create index</span></div><div class="line"></div><div class="line"> curl -XPOST localhost:9200/myindex <span class="_">-d</span> <span class="string">'&#123;</span></div><div class="line">        "settings" : &#123;</div><div class="line">            "number_of_shards" : 2,</div><div class="line">            "number_of_replicas" : 1</div><div class="line">        &#125;,</div><div class="line">        "mappings" : &#123;</div><div class="line">          "order" : &#123;</div><div class="line">              "properties" : &#123;</div><div class="line">                  "id" : &#123;"type" : "keyword", "store" : "yes"&#125;,</div><div class="line">                  "date" : &#123;"type" : "date", "store" : "no" , </div><div class="line">                  "index":"not_analyzed"&#125;,</div><div class="line">                  "customer_id" : &#123;"type" : "keyword", "store" : </div><div class="line">                                  "yes"&#125;,</div><div class="line">                  "sent" : &#123;"type" : "boolea+n", </div><div class="line">                            "index":"not_analyzed"&#125;,</div><div class="line">                  "name" : &#123;"type" : "text", "index":"analyzed"&#125;,</div><div class="line">                  "quantity" : &#123;"type" : "integer", </div><div class="line">                                "index":"not_analyzed"&#125;,</div><div class="line">                  "vat" : &#123;"type" : "double", "index":"no"&#125;</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;'</div><div class="line"></div><div class="line">    <span class="comment">##delete index</span></div><div class="line">    curl -XDELETE http://127.0.0.1:9200/myindex</div><div class="line"></div><div class="line"><span class="comment">##put mappings in index</span></div><div class="line">curl -XPUT <span class="string">'http://localhost:9200/myindex/order/_mapping'</span> <span class="_">-d</span> <span class="string">'&#123;</span></div><div class="line">        "order" : &#123;</div><div class="line">        "properties" : &#123;</div><div class="line">        "id" : &#123;"type" : "keyword", "store" : "yes"&#125;,</div><div class="line">        "date" : &#123;"type" : "date", "store" : "no" , </div><div class="line">                  "index":"not_analyzed"&#125;,</div><div class="line">        "customer_id" : &#123;"type" : "keyword", "store" : "yes"&#125;,</div><div class="line">        "sent" : &#123;"type" : "boolean", "index":"not_analyzed"&#125;,</div><div class="line">        "name" : &#123;"type" : "text", "index":"analyzed"&#125;,</div><div class="line">        "quantity" : &#123;"type" : "integer", </div><div class="line">                      "index":"not_analyzed"&#125;,</div><div class="line">        "vat" : &#123;"type" : "double", "index":"no"&#125;</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">&#125;'</div><div class="line"></div><div class="line"><span class="comment">##get mappings</span></div><div class="line">curl -XGET <span class="string">'http://localhost:9200/myindex/order/_mapping?pretty=true'</span></div><div class="line"></div><div class="line"><span class="comment">##get document</span></div><div class="line">curl -XGET  <span class="string">'http://localhost:9200/myindex/order/2qLrAfPVQvCRMe7Ku8r0Tw?pretty=true'</span></div><div class="line">curl <span class="string">'http://localhost:9200/myindex/order/2qLrAfPVQvCRMe7Ku8r0Tw?fields=date,sent'</span></div><div class="line">curl -XGET http://localhost:9200/myindex/order/2qLrAfPVQvCRMe7Ku8r0Tw/_source</div><div class="line"></div><div class="line"><span class="comment">##delete document</span></div><div class="line">curl -XDELETE  <span class="string">'http://localhost:9200/myindex/order/2qLrAfPVQvCRMe7Ku8r0Tw'</span></div><div class="line"></div><div class="line"><span class="comment">##update document</span></div><div class="line">http://&lt;server&gt;/&lt;index_name&gt;/&lt;type_name&gt;/&lt;id&gt;/_update</div></pre></td></tr></table></figure>
+<h2 id="Searching"><a href="#Searching" class="headerlink" title="Searching"></a>Searching</h2><ul>
+<li><a href="http://localhost:9200/_search" target="_blank" rel="external">http://localhost:9200/_search</a> - Search across all indexes and all types.</li>
+<li><a href="http://localhost:9200/movies/_search" target="_blank" rel="external">http://localhost:9200/movies/_search</a> - Search across all types in the movies index.</li>
+<li><a href="http://localhost:9200/movies/movie/_search" target="_blank" rel="external">http://localhost:9200/movies/movie/_search</a> - Search explicitly for documents of type movie within the movies index.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">curl -XPOST <span class="string">"http://localhost:9200/_search"</span> <span class="_">-d</span><span class="string">'</span></div><div class="line">&#123;</div><div class="line">    "query": &#123;</div><div class="line">        "query_string": &#123;</div><div class="line">            "query": "kill"</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;'</div><div class="line"></div><div class="line">curl -XPOST <span class="string">"http://localhost:9200/_search"</span> <span class="_">-d</span><span class="string">'</span></div><div class="line">&#123;</div><div class="line">    "query": &#123;</div><div class="line">        "query_string": &#123;</div><div class="line">            "query": "ford",</div><div class="line">            "fields": ["title"]</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;'</div><div class="line"></div><div class="line"><span class="comment">#filter</span></div><div class="line">curl -XPOST <span class="string">"http://localhost:9200/_search"</span> <span class="_">-d</span><span class="string">'</span></div><div class="line">&#123;</div><div class="line">    "query": &#123;</div><div class="line">        "filtered": &#123;</div><div class="line">            "query": &#123;</div><div class="line">                "query_string": &#123;</div><div class="line">                    "query": "drama"</div><div class="line">                &#125;</div><div class="line">            &#125;,</div><div class="line">            "filter": &#123;</div><div class="line">                "term": &#123; "year": 1962 &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;'</div><div class="line"></div><div class="line">curl -XPOST <span class="string">"http://localhost:9200/_search"</span> <span class="_">-d</span><span class="string">'</span></div><div class="line">&#123;</div><div class="line">    "query": &#123;</div><div class="line">        "filtered": &#123;</div><div class="line">            "query": &#123;</div><div class="line">                "match_all": &#123;</div><div class="line">                &#125;</div><div class="line">            &#125;,</div><div class="line">            "filter": &#123;</div><div class="line">                "term": &#123; "year": 1962 &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;'</div><div class="line"></div><div class="line">curl -XPOST <span class="string">"http://localhost:9200/_search"</span> <span class="_">-d</span><span class="string">'</span></div><div class="line">&#123;</div><div class="line">    "query": &#123;</div><div class="line">        "constant_score": &#123;</div><div class="line">            "filter": &#123;</div><div class="line">                "term": &#123; "year": 1962 &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;'</div><div class="line"></div><div class="line"><span class="comment">#mapping</span></div><div class="line">curl -XPOST ...:9200/my_index <span class="_">-d</span> <span class="string">'&#123;</span></div><div class="line">    "settings" : &#123;</div><div class="line">        # .. index settings</div><div class="line">    &#125;,</div><div class="line">    "mappings" : &#123;</div><div class="line">        "my_type" : &#123;</div><div class="line">            # mapping for my_type</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;'</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;CRUD&quot;&gt;&lt;a href=&quot;#CRUD&quot; class=&quot;headerlink&quot; title=&quot;CRUD&quot;&gt;&lt;/a&gt;CRUD&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>architecture</title>
+    <link href="http://yoursite.com/2017/02/16/architecture/"/>
+    <id>http://yoursite.com/2017/02/16/architecture/</id>
+    <published>2017-02-16T07:58:09.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="microservice-architecture"><a href="#microservice-architecture" class="headerlink" title="microservice architecture"></a>microservice architecture</h2><p>major application components are split up into smaller, separately deployed units, robust, scalability, continuous delivery.</p>
+<p>Challenges : correct level of granularity of service components. </p>
+<ul>
+<li>too coarse-grained : you may not realize the benefits of this architecture pattern(deployment,scalability,loose coupling)</li>
+<li>too fine-grained : turn it to service-oriented architecture.</li>
+</ul>
+<p>Inter-service communication, undesired coupling, shared database? shared functionality?</p>
+<p>since distributed, issues such as contract creation, maintenance, government, availability, authentication and authorization occur.</p>
+<h2 id="event-driven-architecture"><a href="#event-driven-architecture" class="headerlink" title="event driven architecture"></a>event driven architecture</h2><p>distributed, asynchronous, scalable.</p>
+<p>mediator vs broker ? orchestrate multiple steps within an event in central mediator or broker topology to chain events together.</p>
+<hr>
+<h2 id="event-—-gt-event-queue-—-gt-event-mediator-—-gt-event-channel-s-—-gt-event-processors"><a href="#event-—-gt-event-queue-—-gt-event-mediator-—-gt-event-channel-s-—-gt-event-processors" class="headerlink" title="event —&gt; event queue —&gt; event mediator —&gt; event channel(s) —&gt; event processors"></a>event —&gt; event queue —&gt; event mediator —&gt; event channel(s) —&gt; event processors</h2><p>message queue, or web service endpoint, or any combination thereof.</p>
+<p>Event processors are <del>self-contained, independent, highly decoupled</del> architecture components that perform a specific task in the application system. In general, each event-processor component should perform a single business task and not rely on other event processors to complete its specific task.</p>
+<p>You should understand variety options and choose solution matches your needs and requirements.</p>
+<p>Spring Integration | Apache Camel | BPEL</p>
+<p>Broker topology differs from the mediator in that there is no central event mediator, rather, message flow is distributed across the event processor components in a chain-like fashion through a lightweight message broker(activemq,hornetq,etc).</p>
+<p>The broker topology is all about <del>the chaining of events to perform a business function</del>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;microservice-architecture&quot;&gt;&lt;a href=&quot;#microservice-architecture&quot; class=&quot;headerlink&quot; title=&quot;microservice architecture&quot;&gt;&lt;/a&gt;microservic
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>spring</title>
+    <link href="http://yoursite.com/2017/02/08/spring/"/>
+    <id>http://yoursite.com/2017/02/08/spring/</id>
+    <published>2017-02-08T05:58:24.000Z</published>
+    <updated>2017-05-08T06:19:54.758Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Spring-doc"><a href="#Spring-doc" class="headerlink" title="Spring doc"></a>Spring doc</h2><p><a href="http://docs.spring.io/spring-boot/docs/current/reference/html/index.html" target="_blank" rel="external">Spring docs</a>.</p>
+<h2 id="JPA"><a href="#JPA" class="headerlink" title="JPA"></a>JPA</h2><p>JPA Specification : hibernate, openjpa, toplink and so on.</p>
+<p>Config jpa in spring by defining two beans, datesource and entityManagerFactory.</p>
+<p>Entity reflect database foreign keys and relationship in class attributes.</p>
+<p>Check<br><a href="http://docs.oracle.com/javaee/7/api/javax/persistence/OneToMany.html" target="_blank" rel="external">OneToMany docs</a>.</p>
+<p>Keywords: </p>
+<p>Role,Direction(unidirectional,bidirectional),Cardinality,Ordinality.<br>Owner Entity, Non-owner Entity, Source, Target.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@Entity</div><div class="line">@Table(name=&quot;user&quot;)</div><div class="line">public class User implements Serializable&#123;</div><div class="line">	@OneToMany</div><div class="line">	private Set&lt;Transaction&gt; transactions = new LinkedHashSet&lt;Transaction&gt;();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Specifying Many as the second part declares that the origin entity (User) can have several target Entities (Transactions). These targets will have to be wrapped in a collection type. If the origin entity cannot have several targets, then the second part of the relationship has to be One.</p>
+<p>A Transaction can have only one User entity.</p>
+<p>We can then deduce the two annotations: @OneToMany in User and @ManyToOne in Transactions.</p>
+<a id="more"></a>
+<p>JoinColumns are nothing but a Foreign Key Columns.<br>JPA calls them Join Columns, possibly because they are more verbose in what their actual role is, to join the two entities using a common column.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@Entity</div><div class="line">public class Employee implements Serializable&#123;</div><div class="line">	@ManyToOne</div><div class="line">	private Department department;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**or**/</div><div class="line">/**ManyToOne mapping are defined on the owner entity.**/</div><div class="line">@Entity</div><div class="line">public class Employee implements Serializable&#123;</div><div class="line">	@Id private int id;</div><div class="line"></div><div class="line">	@ManyToOne</div><div class="line">	@JoinColumn(name=&quot;DEPT_ID&quot;)</div><div class="line">	private Department department;</div><div class="line">	//otherwise, default name will be department_id</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Bidirectional-OneToOne-Mapping"><a href="#Bidirectional-OneToOne-Mapping" class="headerlink" title="Bidirectional OneToOne Mapping."></a>Bidirectional OneToOne Mapping.</h3><p>We know that the owner always have a JoinColumn annotation. In the case of OneToOne mapping, any entity can be the owner. The other non-owner entity then has to provide the mappedBy attribute value to indicate that it is not the owner of the relationship. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@Entity</div><div class="line">public class Job &#123;</div><div class="line">    @Id private int id;</div><div class="line">    private String designation;</div><div class="line">    private String location;</div><div class="line">    @OneToOne(mappedBy=&quot;job&quot;)</div><div class="line">    private Person person;</div><div class="line">    //the mappedBy attribute refers to the attribute name job, defined in the source entity Person.</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="OneToMany"><a href="#OneToMany" class="headerlink" title="OneToMany"></a>OneToMany</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@Entity</div><div class="line">public class Book &#123;</div><div class="line">    @Id private int id;</div><div class="line">    @OneToMany</div><div class="line">    @JoinColumn(name=&quot;BOOK_ID&quot;) // BOOK_ID exists in the BookMark table</div><div class="line">    private List bookMarks;</div><div class="line">    // ... </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Bidirectional-OneToMany-Mapping"><a href="#Bidirectional-OneToMany-Mapping" class="headerlink" title="Bidirectional OneToMany Mapping"></a>Bidirectional OneToMany Mapping</h3><p>When the relationship is bidirectional, there are normally two associations defined :<br>one from source to target entity(having the JoinColumn annotation) ,<br>and the other from target to source entity(having the mapped by attribute ).<br>OneToMany bidirectional mapping always implies a ManyToOne mapping back to the source.<br>Another important thing to remember from the previous discussion about ManyToOne mapping is that if theres is a ManyToOne mapping, then the JoinColumn annotation will always be defined on the ManyToOne mapping attribute. Thus in case of Bidirectional OneToMany mapping, the JoinColumn will exists on the entity having ManyToOne annotation. </p>
+<h3 id="Bidirectional-ManyToMany-Mapping"><a href="#Bidirectional-ManyToMany-Mapping" class="headerlink" title="Bidirectional ManyToMany Mapping"></a>Bidirectional ManyToMany Mapping</h3><p>We do that by defining the mappedBy attribute of the relationship on the target entity.<br>Note that since the multiplicity of both the sides of the relationship is plural, it is not possible(or feasible/correct) to store an iunlimited set of foreign key values in a single entity row.<br>We should use the third table to associate the two entities.<br>This third table is called the <del>JoinTable</del>.<br>A Join Table is a requirement for a ManyToMany relationship.<br>A JoinTable consists of the Primary Keys from both the entities and nothing else. Here is an example of ManyToMany relationship from Pro JPA2 book.</p>
+<p><img src="/images/ManyToMany.png" alt=""></p>
+<p>In the above example, the Employee and Project table are two entities related with ManyToMany relationship. EMP_PROJ table is the JoinTable that is used to store the entity reference for each of the table.<br>In JPA, we use the @JoinTable annotation to define a Join Table for the Many to Many relationship. Here is an example</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</div><div class="line">    <span class="meta">@Id</span> <span class="keyword">private</span> <span class="keyword">int</span> id;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="meta">@ManyToMany</span></div><div class="line">    <span class="meta">@JoinTable</span>(name=<span class="string">"EMP_PROJ"</span>,</div><div class="line">          joinColumns=<span class="meta">@JoinColumn</span>(name=<span class="string">"EMP_ID"</span>),</div><div class="line">          inverseJoinColumns=<span class="meta">@JoinColumn</span>(name=<span class="string">"PROJ_ID"</span>))</div><div class="line">    <span class="keyword">private</span> Collection projects;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>The JoinTable annotation has a name attribute which corresponds to the name of the Join Table. It also has two other attributes :</li>
+</ul>
+<ul>
+<li>joinColumns which is the column name of the owning Entity</li>
+</ul>
+<ul>
+<li>inverseJoinColumns which is the column name of the inverse or non owning Entity. </li>
+</ul>
+<h2 id="JPA-Criteria"><a href="#JPA-Criteria" class="headerlink" title="JPA Criteria"></a>JPA Criteria</h2><p>to build query programmatically, define where clause of a query for a domain class.</p>
+<p>Eric Evans “Domain Driven Design”</p>
+<ul>
+<li><p><a href="http://blog.kaczmarzyk.net/2014/03/23/alternative-api-for-filtering-data-with-spring-mvc-and-spring-data/" target="_blank" rel="external">SpecificationArgumentResolver with Filter Spec</a>.</p>
+</li>
+<li><p><a href="http://ankushs92.github.io/tutorial/2016/05/03/pagination-with-spring-boot.html" target="_blank" rel="external">Easy Pagination with Spring Boot</a>.</p>
+</li>
+</ul>
+<h2 id="Exception-Handler"><a href="#Exception-Handler" class="headerlink" title="Exception Handler"></a>Exception Handler</h2><ul>
+<li><a href="https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc" target="_blank" rel="external">@ControllerAdvice</a></li>
+<li><a href="http://mvc-exceptions-v2.cfapps.io/" target="_blank" rel="external">Demo of Exception</a></li>
+</ul>
+<h2 id="CommandLineRunner-init"><a href="#CommandLineRunner-init" class="headerlink" title="CommandLineRunner#init"></a>CommandLineRunner#init</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        SpringApplication.run(Application.class, args);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">  <span class="function">CommandLineRunner <span class="title">init</span><span class="params">(CustomerRespository repo)</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> (evt) -&gt;  &#123;</div><div class="line">    repo.save(<span class="keyword">new</span> Customer(<span class="string">"Adam"</span>,<span class="string">"adam@boot.com"</span>));</div><div class="line">    repo.save(<span class="keyword">new</span> Customer(<span class="string">"John"</span>,<span class="string">"john@boot.com"</span>));</div><div class="line">    repo.save(<span class="keyword">new</span> Customer(<span class="string">"Smith"</span>,<span class="string">"smith@boot.com"</span>));</div><div class="line">    repo.save(<span class="keyword">new</span> Customer(<span class="string">"Edgar"</span>,<span class="string">"edgar@boot.com"</span>));</div><div class="line">    repo.save(<span class="keyword">new</span> Customer(<span class="string">"Martin"</span>,<span class="string">"martin@boot.com"</span>));</div><div class="line">    repo.save(<span class="keyword">new</span> Customer(<span class="string">"Tom"</span>,<span class="string">"tom@boot.com"</span>));</div><div class="line">    repo.save(<span class="keyword">new</span> Customer(<span class="string">"Sean"</span>,<span class="string">"sean@boot.com"</span>));</div><div class="line">  &#125;;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Actuators-monitor-and-manage-boot-application"><a href="#Actuators-monitor-and-manage-boot-application" class="headerlink" title="Actuators monitor and manage boot application"></a>Actuators monitor and manage boot application</h2><h2 id="Richardson’s-maturity-model"><a href="#Richardson’s-maturity-model" class="headerlink" title="Richardson’s maturity model"></a>Richardson’s maturity model</h2><ul>
+<li>level 0 : http</li>
+<li>level 1 : resources</li>
+<li>level 2 : http verbs</li>
+<li>level 3 : hypermedia controls (make it discoverable through the use of hyperlinks, like HATEOAS)</li>
+</ul>
+<h2 id="view-resolver"><a href="#view-resolver" class="headerlink" title="view resolver"></a>view resolver</h2><h3 id="render"><a href="#render" class="headerlink" title="render"></a>render</h3><p><a href="http://docs.spring.io/spring-boot/docs/current/reference/html/howto-spring-mvc.html" target="_blank" rel="external">Spring MVC</a>.</p>
+<h2 id="Logging"><a href="#Logging" class="headerlink" title="Logging"></a>Logging</h2><p><a href="http://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html" target="_blank" rel="external">Spring Logging</a>.</p>
+<h2 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h2><p><a href="http://zoltanaltfatter.com/2016/05/11/application-events-with-spring/" target="_blank" rel="external">Spring Events</a>.<br><a href="https://www.keyup.eu/en/blog/101-synchronous-and-asynchronous-spring-events-in-one-application" target="_blank" rel="external">Spring Events</a>.</p>
+<h2 id="run-in-community-intellij"><a href="#run-in-community-intellij" class="headerlink" title="run in community intellij"></a>run in community intellij</h2><p>we can do it with embedded tomcat</p>
+<p>mvn tomcat7:run</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">path</span>&gt;</span>/<span class="tag">&lt;/<span class="name">path</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="Spring-Server-Sent-Events"><a href="#Spring-Server-Sent-Events" class="headerlink" title="Spring Server-Sent Events"></a>Spring Server-Sent Events</h2><p>opening an HTTP connection for receiving push notifications from a server in the form of DOM events.</p>
+<h2 id="Spring-Boot-Starters"><a href="#Spring-Boot-Starters" class="headerlink" title="Spring Boot Starters"></a>Spring Boot Starters</h2><p><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-starters/spring-boot-starter-web/pom.xml" target="_blank" rel="external">Spring Starters</a>.</p>
+<p><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-starters/spring-boot-starter-web/src/main/resources/META-INF/spring.provides" target="_blank" rel="external">Starters Providers</a>.</p>
+<p>By having this starter as our dependency, we will transitively get the … dependency libraries in our build.</p>
+<p>The starter POM file itself does not add JAR dependencies to the project. Instead, it will only add library versions. Subsequently, when dependencies are added to the POM file, they refer to the library versions from this POM file</p>
+<h2 id="Beans"><a href="#Beans" class="headerlink" title="Beans"></a>Beans</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@Value(&quot;$&#123;github.token&#125;&quot;)</div><div class="line">String githubToken;</div><div class="line"></div><div class="line"></div><div class="line">@Bean</div><div class="line">public GitHubTemplate gitHubTemplate()&#123;</div><div class="line">    return new GitHubTemplate(githubToken);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="AttributeConverter"><a href="#AttributeConverter" class="headerlink" title="AttributeConverter"></a>AttributeConverter</h2><p><a href="http://www.thoughts-on-java.org/jpa-21-how-to-implement-type-converter/" target="_blank" rel="external">Spring JPA Attribute Converter</a>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">package org.hibernate.test.converter.map;</div><div class="line"></div><div class="line">import javax.persistence.AttributeConverter;</div><div class="line">import javax.persistence.Converter;</div><div class="line"></div><div class="line">/**</div><div class="line"> * @author Steve Ebersole</div><div class="line"> */</div><div class="line">@Converter(autoApply = true)</div><div class="line">public class ColorTypeConverter implements AttributeConverter&lt;ColorType, String&gt; &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String convertToDatabaseColumn(ColorType attribute) &#123;</div><div class="line">        return attribute == null ? null : attribute.toExternalForm();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public ColorType convertToEntityAttribute(String dbData) &#123;</div><div class="line">        return dbData == null ? null : ColorType.fromExternalForm( dbData );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Composable-annotation"><a href="#Composable-annotation" class="headerlink" title="Composable annotation"></a>Composable annotation</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Spring-doc&quot;&gt;&lt;a href=&quot;#Spring-doc&quot; class=&quot;headerlink&quot; title=&quot;Spring doc&quot;&gt;&lt;/a&gt;Spring doc&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://docs.spring.io/spring-boot/docs/current/reference/html/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Spring docs&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;JPA&quot;&gt;&lt;a href=&quot;#JPA&quot; class=&quot;headerlink&quot; title=&quot;JPA&quot;&gt;&lt;/a&gt;JPA&lt;/h2&gt;&lt;p&gt;JPA Specification : hibernate, openjpa, toplink and so on.&lt;/p&gt;
+&lt;p&gt;Config jpa in spring by defining two beans, datesource and entityManagerFactory.&lt;/p&gt;
+&lt;p&gt;Entity reflect database foreign keys and relationship in class attributes.&lt;/p&gt;
+&lt;p&gt;Check&lt;br&gt;&lt;a href=&quot;http://docs.oracle.com/javaee/7/api/javax/persistence/OneToMany.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;OneToMany docs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Keywords: &lt;/p&gt;
+&lt;p&gt;Role,Direction(unidirectional,bidirectional),Cardinality,Ordinality.&lt;br&gt;Owner Entity, Non-owner Entity, Source, Target.&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;@Entity&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;@Table(name=&amp;quot;user&amp;quot;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;public class User implements Serializable&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	@OneToMany&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	private Set&amp;lt;Transaction&amp;gt; transactions = new LinkedHashSet&amp;lt;Transaction&amp;gt;();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Specifying Many as the second part declares that the origin entity (User) can have several target Entities (Transactions). These targets will have to be wrapped in a collection type. If the origin entity cannot have several targets, then the second part of the relationship has to be One.&lt;/p&gt;
+&lt;p&gt;A Transaction can have only one User entity.&lt;/p&gt;
+&lt;p&gt;We can then deduce the two annotations: @OneToMany in User and @ManyToOne in Transactions.&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>prob</title>
+    <link href="http://yoursite.com/2017/01/09/prob/"/>
+    <id>http://yoursite.com/2017/01/09/prob/</id>
+    <published>2017-01-09T01:17:20.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Bernoulli-variance"><a href="#Bernoulli-variance" class="headerlink" title="Bernoulli variance"></a>Bernoulli variance</h3><p><img src="/images/var.gif" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Bernoulli-variance&quot;&gt;&lt;a href=&quot;#Bernoulli-variance&quot; class=&quot;headerlink&quot; title=&quot;Bernoulli variance&quot;&gt;&lt;/a&gt;Bernoulli variance&lt;/h3&gt;&lt;p&gt;&lt;img s
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>shortcuts</title>
+    <link href="http://yoursite.com/2016/12/26/shortcuts/"/>
+    <id>http://yoursite.com/2016/12/26/shortcuts/</id>
+    <published>2016-12-26T02:28:52.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Tools"><a href="#Tools" class="headerlink" title="Tools."></a>Tools.</h1><h2 id="Intellij"><a href="#Intellij" class="headerlink" title="Intellij"></a>Intellij</h2><table>
+<thead>
+<tr>
+<th>Shortcuts</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keymap</td>
+<td>macosx10.5</td>
+<td></td>
+</tr>
+<tr>
+<td>double shift</td>
+<td>search everything</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + O</td>
+<td>open class</td>
+<td>classname:50</td>
+</tr>
+<tr>
+<td>cmd + shift + O</td>
+<td>open file</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + option + O</td>
+<td>symbol lookup</td>
+<td>ClientInfoBean.clientName</td>
+</tr>
+<tr>
+<td>cmd + E</td>
+<td>recent files</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + shift + E</td>
+<td>recent edit files</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + 1</td>
+<td>project view</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + arrowdown</td>
+<td>to source code</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + N</td>
+<td>new file</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + shift + F12</td>
+<td>maximize/restore window</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + w</td>
+<td>close file</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + P</td>
+<td>get parameter info</td>
+<td>method</td>
+</tr>
+<tr>
+<td>cmd + space</td>
+<td>code completion</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + shift + enter</td>
+<td>code completion</td>
+<td>if (null == a)…</td>
+</tr>
+<tr>
+<td>cmd + B/U</td>
+<td>declaration/super</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + shift + B</td>
+<td>implementation</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + F12</td>
+<td>outline</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + arrowup</td>
+<td>navigation bar</td>
+<td></td>
+</tr>
+<tr>
+<td>cmd + ctrl + A</td>
+<td>find action</td>
+<td></td>
+</tr>
+<tr>
+<td>option + arrowup</td>
+<td>selection extend</td>
+<td></td>
+</tr>
+<tr>
+<td>option + arrowdown</td>
+<td>selection extend</td>
+<td></td>
+</tr>
+<tr>
+<td>option + shift + arrowdown/up</td>
+<td>move code</td>
+<td></td>
+</tr>
+<tr>
+<td>option + ctrl + I</td>
+<td>auto intent code</td>
+<td></td>
+</tr>
+<tr>
+<td>option + T then option enter</td>
+<td>adjust style</td>
+<td>select methon name first </td>
+</tr>
+<tr>
+<td>option + enter</td>
+<td>lang injection</td>
+<td>json/regex inject</td>
+</tr>
+<tr>
+<td>option + slash</td>
+<td>code completion</td>
+<td></td>
+</tr>
+<tr>
+<td>ctrl + H</td>
+<td>type hierarchy</td>
+<td></td>
+</tr>
+<tr>
+<td>ctrl + shift + H</td>
+<td>method hierarchy</td>
+<td></td>
+</tr>
+<tr>
+<td>ctrl + T</td>
+<td>refactor</td>
+<td></td>
+</tr>
+<tr>
+<td>F7/F8</td>
+<td>debug</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="end"><a href="#end" class="headerlink" title="end"></a>end</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Tools&quot;&gt;&lt;a href=&quot;#Tools&quot; class=&quot;headerlink&quot; title=&quot;Tools.&quot;&gt;&lt;/a&gt;Tools.&lt;/h1&gt;&lt;h2 id=&quot;Intellij&quot;&gt;&lt;a href=&quot;#Intellij&quot; class=&quot;headerlink&quot; ti
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>articles</title>
+    <link href="http://yoursite.com/2016/12/26/articles/"/>
+    <id>http://yoursite.com/2016/12/26/articles/</id>
+    <published>2016-12-26T02:11:48.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Best-Docs-for-reference-later"><a href="#Best-Docs-for-reference-later" class="headerlink" title="Best Docs for reference later."></a>Best Docs for reference later.</h2><h3 id="Login-Shells"><a href="#Login-Shells" class="headerlink" title="Login Shells:"></a>Login Shells:</h3><ul>
+<li><a href="http://dghubble.com/blog/posts/.bashprofile-.profile-and-.bashrc-conventions/" target="_blank" rel="external">Bash Configurations Demystified</a>.</li>
+<li><a href="https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html" target="_blank" rel="external">Bash Startup Files</a>.</li>
+</ul>
+<h3 id="Git"><a href="#Git" class="headerlink" title="Git:"></a>Git:</h3><ul>
+<li><a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="external">A successful Git branching model</a>.</li>
+<li><a href="http://danielkummer.github.io/git-flow-cheatsheet/" target="_blank" rel="external">Git flow cheatsheet</a>.</li>
+<li><a href="https://www.atlassian.com/git/tutorials/refs-and-the-reflog" target="_blank" rel="external">Git refs</a>.</li>
+</ul>
+<h3 id="JPA"><a href="#JPA" class="headerlink" title="JPA:"></a>JPA:</h3><ul>
+<li><a href="http://www.kumaranuj.com/2013/05/jpa-2-understanding-relationships.html" target="_blank" rel="external">JPA relationship</a>.</li>
+</ul>
+<h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven:"></a>Maven:</h3><ul>
+<li><a href="https://maven.apache.org/index.html" target="_blank" rel="external">Apache Maven Docs</a>.</li>
+<li><a href="http://books.sonatype.com/mvnref-book/reference/index.html" target="_blank" rel="external">Maven: The Complete Reference</a>.</li>
+<li><a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html" target="_blank" rel="external">Maven: Lifecycle </a>.</li>
+</ul>
+<h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring:"></a>Spring:</h3><ul>
+<li><a href="http://docs.spring.io/spring-boot/docs/current/reference/html/index.html" target="_blank" rel="external">Spring Boot Reference Guide</a>.</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Best-Docs-for-reference-later&quot;&gt;&lt;a href=&quot;#Best-Docs-for-reference-later&quot; class=&quot;headerlink&quot; title=&quot;Best Docs for reference later.&quot;&gt;&lt;/
+    
+    </summary>
+    
+    
+      <category term="links" scheme="http://yoursite.com/tags/links/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>cassandra</title>
+    <link href="http://yoursite.com/2016/12/21/cassandra/"/>
+    <id>http://yoursite.com/2016/12/21/cassandra/</id>
+    <published>2016-12-21T00:43:00.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="CQLSH"><a href="#CQLSH" class="headerlink" title="CQLSH"></a>CQLSH</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CREATE KEYSPACE sz</div><div class="line"> WITH REPLICATION=</div><div class="line"> &#123;&apos;class&apos;:&apos;SimpleStrategy&apos;, &apos;replication_factor&apos;:1&#125;;</div><div class="line"></div><div class="line">CREATE KEYSPACE sh</div><div class="line"> WITH REPLICATION=</div><div class="line"> &#123;&apos;class&apos;:&apos;SimpleStrategy&apos;, &apos;replication_factor&apos;:1&#125;;</div></pre></td></tr></table></figure>
+<h1 id="Type-System"><a href="#Type-System" class="headerlink" title="Type System"></a>Type System</h1><p>text : utf-8<br>ascii</p>
+<h2 id="Dates-and-times"><a href="#Dates-and-times" class="headerlink" title="Dates and times"></a>Dates and times</h2><p>dates and times can be stored using timestamp, which holds data/time data at millisecond precision.</p>
+<h2 id="Timeuuid"><a href="#Timeuuid" class="headerlink" title="Timeuuid"></a>Timeuuid</h2><p>has specical functionality to convert between uuid and timestamps.<br>UUID(timestamp+mac, 8-4-4-4-12 literal)</p>
+<h2 id="Blobs"><a href="#Blobs" class="headerlink" title="Blobs"></a>Blobs</h2><p>blob store unstructured binary data such as image, audio, and encrypted data.</p>
+<h1 id="Partition-key"><a href="#Partition-key" class="headerlink" title="Partition key"></a>Partition key</h1><p>the actual ordering is determined by the token of the primary key.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SELECT &quot;username&quot;, token(&quot;username&quot;)</div><div class="line">FROM users;</div></pre></td></tr></table></figure></p>
+<h1 id="Clustering-key"><a href="#Clustering-key" class="headerlink" title="Clustering key"></a>Clustering key</h1><p>determine the ordering of rows within a partition.</p>
+<h1 id="Mental-model"><a href="#Mental-model" class="headerlink" title="Mental model"></a>Mental model</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Map&lt;RowKey, SortedMap&lt;ColumnKey, ColumnValue&gt;&gt;</div></pre></td></tr></table></figure>
+<h1 id="Static-Column"><a href="#Static-Column" class="headerlink" title="Static Column"></a>Static Column</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE &quot;users_with_status_updates&quot; (</div><div class="line">  &quot;username&quot; text,</div><div class="line">  &quot;id&quot; timeuuid,</div><div class="line">  &quot;email&quot; text STATIC,</div><div class="line">  &quot;encrypted_password&quot; blob STATIC,</div><div class="line">  &quot;body&quot; text,</div><div class="line">  PRIMARY KEY (&quot;username&quot;, &quot;id&quot;)</div><div class="line">);</div><div class="line"></div><div class="line"></div><div class="line">Since the email and encrypted_password columns are properties of a user, </div><div class="line">not of a specific status update, we declare them STATIC. </div><div class="line">Any column that is declared STATIC has one value per partition key.</div></pre></td></tr></table></figure>
+<h1 id="TIMEUUID"><a href="#TIMEUUID" class="headerlink" title="TIMEUUID"></a>TIMEUUID</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE &quot;user_status_updates&quot; (</div><div class="line">  &quot;username&quot; text,</div><div class="line">  &quot;id&quot; timeuuid,</div><div class="line">  &quot;body&quot; text,</div><div class="line">  PRIMARY KEY (&quot;username&quot;, &quot;id&quot;)</div><div class="line">);</div><div class="line"></div><div class="line">CREATE TABLE &quot;reversed_user_status_updates&quot; (</div><div class="line">  &quot;username&quot; text,</div><div class="line">  &quot;id&quot; timeuuid,</div><div class="line">  &quot;body&quot; text,</div><div class="line">  PRIMARY KEY (&quot;username&quot;, &quot;id&quot;)</div><div class="line">) WITH CLUSTERING ORDER BY (&quot;id&quot; DESC);</div><div class="line"></div><div class="line">SELECT &quot;username&quot;, &quot;id&quot;, &quot;body&quot;, DATEOF(&quot;id&quot;)</div><div class="line">FROM &quot;user_status_updates&quot;;</div><div class="line"></div><div class="line"></div><div class="line">SELECT &quot;username&quot;, &quot;id&quot;, &quot;body&quot;, UNIXTIMESTAMPOF(&quot;id&quot;)</div><div class="line">FROM &quot;user_status_updates&quot;;</div><div class="line"></div><div class="line">INSERT INTO &quot;user_status_updates&quot; (&quot;username&quot;, &quot;id&quot;, &quot;body&quot;)</div><div class="line">VALUES (&apos;bob&apos;, NOW(), &apos;Bob Update 3&apos;);</div></pre></td></tr></table></figure>
+<h2 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">SELECT &quot;id&quot;, DATEOF(&quot;id&quot;), &quot;body&quot;</div><div class="line">FROM &quot;user_status_updates&quot;</div><div class="line">WHERE &quot;username&quot; = &apos;alice&apos; //partition key</div><div class="line">AND &quot;id&quot; &gt;= MINTIMEUUID(&apos;2014-05-01&apos;) //clustering key</div><div class="line">AND &quot;id&quot; &lt;= MAXTIMEUUID(&apos;2014-05-31&apos;);</div><div class="line"></div><div class="line"></div><div class="line">SELECT &quot;observed_at&quot;, &quot;client_type&quot;</div><div class="line">FROM &quot;status_update_views&quot;</div><div class="line">WHERE &quot;status_update_username&quot; = &apos;alice&apos;</div><div class="line">  AND &quot;status_update_id&quot; = 76e7a4d0-e796-11e3-90ce-5f98e903bf02</div><div class="line">  AND &quot;observed_at&quot; &gt;= MINTIMEUUID(&apos;2014-10-05 00:00:00+0000&apos;)</div><div class="line">  AND &quot;observed_at&quot;  &lt; MINTIMEUUID(&apos;2014-10-06 00:00:00+0000&apos;);</div></pre></td></tr></table></figure>
+<h2 id="Aggregation-Counter"><a href="#Aggregation-Counter" class="headerlink" title="Aggregation Counter"></a>Aggregation Counter</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE &quot;daily_status_update_views&quot; (</div><div class="line">  &quot;year&quot; int,</div><div class="line">  &quot;date&quot; timestamp,</div><div class="line">  &quot;total_views&quot; counter,</div><div class="line">  &quot;web_views&quot; counter,</div><div class="line">  &quot;mobile_views&quot; counter,</div><div class="line">  &quot;api_views&quot; counter,</div><div class="line">  PRIMARY KEY ((&quot;year&quot;), &quot;date&quot;)</div><div class="line">);</div><div class="line"></div><div class="line">INSERT INTO &quot;status_update_views&quot; (</div><div class="line">  &quot;status_update_username&quot;, &quot;status_update_id&quot;,</div><div class="line">  &quot;observed_at&quot;, &quot;client_type&quot;</div><div class="line">) VALUES (</div><div class="line">  &apos;alice&apos;, 76e7a4d0-e796-11e3-90ce-5f98e903bf02,</div><div class="line">  85a53d10-4cc3-11e4-a7ff-5f98e903bf02,</div><div class="line">  &apos;web&apos;</div><div class="line">);</div><div class="line"></div><div class="line">UPDATE &quot;daily_status_update_views&quot;</div><div class="line">SET &quot;total_views&quot; = &quot;total_views&quot; + 1,</div><div class="line">    &quot;web_views&quot; = &quot;web_views&quot; + 1</div><div class="line">WHERE &quot;year&quot; = 2014</div><div class="line">  AND &quot;date&quot; = &apos;2014-10-05&apos;;</div><div class="line"></div><div class="line">INSERT INTO TABLE daily_aggregate_temp</div><div class="line">SELECT wsid,year, month,day,max(temp) high, min(temp) low</div><div class="line">FROM raw_temp_data</div><div class="line">GROUP BY wsid, year, month, day;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;CQLSH&quot;&gt;&lt;a href=&quot;#CQLSH&quot; class=&quot;headerlink&quot; title=&quot;CQLSH&quot;&gt;&lt;/a&gt;CQLSH&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>realtime issue</title>
+    <link href="http://yoursite.com/2016/11/30/realtime-issue/"/>
+    <id>http://yoursite.com/2016/11/30/realtime-issue/</id>
+    <published>2016-11-30T02:52:53.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Time-Series"><a href="#Time-Series" class="headerlink" title="Time Series"></a>Time Series</h2><ul>
+<li>Collect data – kafka</li>
+<li>??? – spark – cassandra?</li>
+<li>Profit? </li>
+</ul>
+<p>Meaningful data</p>
+<p>3V:</p>
+<ul>
+<li>V : Velocity</li>
+<li>V : Volume</li>
+<li>V : Variety</li>
+</ul>
+<p>IOT: Sense : iPhone</p>
+<h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><ul>
+<li>Producers send data in order and are read by consumers.</li>
+<li>Topics store unique info broken into partitions.</li>
+<li>Brokers are the servers that store partitions.</li>
+<li>Partitions are replicated for data resilience.</li>
+</ul>
+<h2 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h2><ul>
+<li>Replacement for mapreduce</li>
+<li>In memory with RDDs</li>
+<li>Way more api calls then map , reduce</li>
+<li>Amazing components to make data analysis easier</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Time-Series&quot;&gt;&lt;a href=&quot;#Time-Series&quot; class=&quot;headerlink&quot; title=&quot;Time Series&quot;&gt;&lt;/a&gt;Time Series&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Collect data – kafka&lt;/li&gt;
+&lt;l
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>stockapi</title>
+    <link href="http://yoursite.com/2016/11/04/stockapi/"/>
+    <id>http://yoursite.com/2016/11/04/stockapi/</id>
+    <published>2016-11-04T00:51:16.000Z</published>
+    <updated>2017-05-08T06:19:54.758Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="APIs"><a href="#APIs" class="headerlink" title="APIs"></a>APIs</h2><p><a href="http://stock.gtimg.cn/data/index.php?appn=detail&amp;action=data&amp;c=sh600103&amp;p=0" target="_blank" rel="external">B-S</a><br><a href="http://web.ifzq.gtimg.cn/appstock/app/day/query?code=sh601668" target="_blank" rel="external">Five Day</a><br><a href="http://web.ifzq.gtimg.cn/appstock/app/minute/query?code=sh600103" target="_blank" rel="external">One Day Minutes</a><br><a href="http://stock.gtimg.cn/data/index.php?appn=price&amp;c=sh600103" target="_blank" rel="external">Distribution</a><br><a href="http://www.tdx.com.cn/products/data/data/vipdoc/shlday.zip" target="_blank" rel="external">SH Daily TDX</a><br><a href="http://www.tdx.com.cn/products/data/data/vipdoc/szlday.zip" target="_blank" rel="external">SZ Daily TDX</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;APIs&quot;&gt;&lt;a href=&quot;#APIs&quot; class=&quot;headerlink&quot; title=&quot;APIs&quot;&gt;&lt;/a&gt;APIs&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://stock.gtimg.cn/data/index.php?appn=detail&amp;amp;
+    
+    </summary>
+    
+    
+      <category term="API" scheme="http://yoursite.com/tags/API/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>couchbase</title>
+    <link href="http://yoursite.com/2016/10/25/couchbase/"/>
+    <id>http://yoursite.com/2016/10/25/couchbase/</id>
+    <published>2016-10-25T02:26:12.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Indexing-and-Querying-via-Views"><a href="#Indexing-and-Querying-via-Views" class="headerlink" title="Indexing and Querying via Views"></a>Indexing and Querying via Views</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">#primary index - all documents by id</div><div class="line">function map (doc,meta)&#123;</div><div class="line">	emit(meta.id,null)</div><div class="line">&#125;</div><div class="line">#secondary index by name</div><div class="line">function map (doc,meta)&#123;</div><div class="line">	if(typeof doc.name !== undefined)&#123;</div><div class="line">	//emiting null means you later access the id of the row</div><div class="line">	emit(doc.name,null);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#compound key -- create a view on persons by indexing by the birthday</div><div class="line">function map(doc,meta)&#123;</div><div class="line">	if(doc.birthday)&#123;</div><div class="line">	emit(dateToArray(doc.birthday),&#123;&quot;firstname&quot;:doc.firstname,&quot;lastname&quot;:doc.lastname&#125;);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//access</div><div class="line">.../_view/byname?reduce=false&amp;key=&quot;David&quot;</div><div class="line">.../_view/byname?reduce=false&amp;startkey=&quot;P&quot;&amp;endKEY=&quot;S&quot;</div><div class="line">.../_view/byname?reduce=true&amp;startkey=&quot;P&quot;&amp;endKEY=&quot;S&quot;</div><div class="line">.../_view/bybirthday?reduce=true&amp;group_level=1</div></pre></td></tr></table></figure>
+<h2 id="Views"><a href="#Views" class="headerlink" title="Views"></a>Views</h2><ul>
+<li>Organized in Design Documents</li>
+<li>Incremental Map-Reduce</li>
+</ul>
+<h2 id="Best-Practices"><a href="#Best-Practices" class="headerlink" title="Best Practices"></a>Best Practices</h2><ul>
+<li>Avoid computing too many things in a view</li>
+<li>Check for attribute existence</li>
+<li>Pre-Filter to avoid unnecessary entries in the view (if(doc.type==”person”)…)</li>
+<li>Project(map) only necessary data by emiting it as part of the value</li>
+<li>Use the built-in reduce if possible</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Indexing-and-Querying-via-Views&quot;&gt;&lt;a href=&quot;#Indexing-and-Querying-via-Views&quot; class=&quot;headerlink&quot; title=&quot;Indexing and Querying via View
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>tech analysis</title>
+    <link href="http://yoursite.com/2016/10/20/tech/"/>
+    <id>http://yoursite.com/2016/10/20/tech/</id>
+    <published>2016-10-20T06:59:46.000Z</published>
+    <updated>2017-05-08T06:19:54.758Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>临盘博弈，应先清心寡欲，心平气和，<br>依大势及之形势以制其仓，弱市取势至于三分，强市取势于七分，<br>或不可满—–如善射之不尽弓力，仓满则制于人。<br>入局观大盘之形以定其势，再观之势以度其利，临机应变，观于长处，动于短处。<br>勿动于少阴，察于太阴处，易出于少阳，止于太阳；<br>然博在通变，弈在制心，通在久观常习，变在出奇制胜。<br>勿惧高于涨势，勿贪低于跌市。久之则心通意明，具足知行合一。<br>积小胜成大胜，以成全胜，后归于无极。<br>胜手临盘，观其形，辩其意，审其势，度其时。<br>动于阴末阳升，止于阳极阴生。<br>其心如山之不动，其性如水之</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;临盘博弈，应先清心寡欲，心平气和，&lt;br&gt;依大势及之形势以制其仓，弱市取势至于三分，强市取势于七分，&lt;br&gt;或不可满—–如善射之不尽弓力，仓满则制于人。&lt;br&gt;入局观大盘之形以定其势，再观之势以度其利，临机应变，观于长处，动于短处。&lt;br&gt;勿动于少
+    
+    </summary>
+    
+    
+      <category term="术" scheme="http://yoursite.com/tags/%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>algos</title>
+    <link href="http://yoursite.com/2016/10/06/algos/"/>
+    <id>http://yoursite.com/2016/10/06/algos/</id>
+    <published>2016-10-06T06:07:22.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Mask"><a href="#Mask" class="headerlink" title="Mask"></a>Mask</h2><h3 id="masking-bits-to-1"><a href="#masking-bits-to-1" class="headerlink" title="masking bits to 1"></a>masking bits to 1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Y OR 1 = 1</div></pre></td></tr></table></figure>
+<h3 id="masking-bits-to-0"><a href="#masking-bits-to-0" class="headerlink" title="masking bits to 0"></a>masking bits to 0</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Y AND 0 = 0</div></pre></td></tr></table></figure>
+<h3 id="query-the-status-of-a-bit"><a href="#query-the-status-of-a-bit" class="headerlink" title="query the status of a bit"></a>query the status of a bit</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Y AND 1 = Y</div></pre></td></tr></table></figure>
+<h3 id="toggle-bit-value"><a href="#toggle-bit-value" class="headerlink" title="toggle bit value"></a>toggle bit value</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Y XOR 1 = ~Y</div><div class="line">as</div><div class="line">Y XOR 11111111</div><div class="line"></div><div class="line">typical usage to swap two variables without...</div><div class="line">turn on/off</div><div class="line"></div><div class="line">a = a ^ b</div><div class="line">b = a ^ b</div><div class="line">a = a ^ b</div><div class="line"></div><div class="line">Actually, we can deduct(推导) a and b by math equation if we know both sum and substraction of a,b.</div></pre></td></tr></table></figure>
+<h2 id="BST"><a href="#BST" class="headerlink" title="BST"></a>BST</h2><p><a href="https://en.wikipedia.org/wiki/Binary_search_tree" target="_blank" rel="external">Definition</a></p>
+<p>The tree additionally satisfies the binary search tree property, which states that </p>
+<ul>
+<li>the key in each node must be greater than all keys stored in the left sub-tree, </li>
+<li>and smaller than all keys in the right sub-tree.</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Mask&quot;&gt;&lt;a href=&quot;#Mask&quot; class=&quot;headerlink&quot; title=&quot;Mask&quot;&gt;&lt;/a&gt;Mask&lt;/h2&gt;&lt;h3 id=&quot;masking-bits-to-1&quot;&gt;&lt;a href=&quot;#masking-bits-to-1&quot; class=&quot;he
+    
+    </summary>
+    
+    
+      <category term="工具, algo" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7-algo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>machine learning</title>
+    <link href="http://yoursite.com/2016/10/03/machine-learning/"/>
+    <id>http://yoursite.com/2016/10/03/machine-learning/</id>
+    <published>2016-10-03T05:52:21.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Measure-Model-Performance"><a href="#Measure-Model-Performance" class="headerlink" title="Measure Model Performance"></a>Measure Model Performance</h2><h3 id="ROC-Curve"><a href="#ROC-Curve" class="headerlink" title="ROC Curve"></a>ROC Curve</h3><p><a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="external">Receiver operating characteristic</a><br><a href="http://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html" target="_blank" rel="external">Receiver operating characteristic in Python</a><br><a href="http://www.dataschool.io/roc-curves-and-auc-explained/" target="_blank" rel="external">ROC Video</a></p>
+<p> It is a plot of the True Positive Rate (on the y-axis) versus the False Positive Rate (on the x-axis) for every possible classification threshold.<br> As a reminder, the True Positive Rate answers the question,<br> “When the actual classification is positive (meaning admitted), how often does the classfier predict positive?”<br> The False Positive Rate answers the question,<br> “When the actual classification is negative (meaning not admitted), how often does the classifier incorrectly predict positive?”<br> Both the True Positive Rate and the False Positive Rate range from 0 to 1.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Measure-Model-Performance&quot;&gt;&lt;a href=&quot;#Measure-Model-Performance&quot; class=&quot;headerlink&quot; title=&quot;Measure Model Performance&quot;&gt;&lt;/a&gt;Measure Mod
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>kafka</title>
+    <link href="http://yoursite.com/2016/09/29/kafka/"/>
+    <id>http://yoursite.com/2016/09/29/kafka/</id>
+    <published>2016-09-29T02:17:20.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Apache-Kafka-Cookbook"><a href="#Apache-Kafka-Cookbook" class="headerlink" title="Apache Kafka Cookbook"></a>Apache Kafka Cookbook</h1><h3 id="Storage-internals"><a href="#Storage-internals" class="headerlink" title="Storage internals"></a>Storage internals</h3><p>Kafka’s storage unit is a partition, a partition is an ordered, immutable sequences that are appended to.<br>A partition cannot be split across multiple brokers or even multiple disks.</p>
+<p>Partitions are split into segments to regularly find the messages on disk that need purged.</p>
+<p>When Kafka writes to a partition, it writes to a segment — the active segment. If the segment’s size limit is reached, a new segment is opened and that becomes the new active segment.</p>
+<p>Segments are named by their base offset. The base offset of a segment is an offset greater than offsets in previous segments and less than or equal to offsets in that segment.</p>
+<p>On disk a partition is a directory and each segment is an index file and a log file.</p>
+<p>Segments logs are where messages are stored<br>Each message is its value, offset, timestamp, key, message size, compression codec, checksum, and version of the message format.<br>The data format on disk is exactly the same as what the broker receives from the producer over the network and sends to its consumers. This allows Kafka to efficiently transfer data with zero copy.</p>
+<p> A smaller size means that files must be closed and allocated more often, which reduces the overall efficiency of disk writes.</p>
+<p> This means that smaller log segments will provide more accurate answers for offset requests by timestamp.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ bin/kafka-run-class.sh kafka.tools.DumpLogSegments --deep-iteration --print-data-log --files /data/kafka/events-1/00000000003065011416.log | head -n 4</div><div class="line">Dumping /data/kafka/appusers-1/00000000003065011416.log</div><div class="line">Starting offset: 3065011416</div><div class="line">offset: 3065011416 position: 0 isvalid: true payloadsize: 2820 magic: 1 compresscodec: NoCompressionCodec crc: 811055132 payload: &#123;&quot;name&quot;: &quot;Travis&quot;, msg: &quot;Hey, what&apos;s up?&quot;&#125;</div><div class="line">offset: 3065011417 position: 1779 isvalid: true payloadsize: 2244 magic: 1 compresscodec: NoCompressionCodec crc: 151590202 payload: &#123;&quot;name&quot;: &quot;Wale&quot;, msg: &quot;Starving.&quot;&#125;</div></pre></td></tr></table></figure>
+<p>Segment indexes map message offsets to their position in the log<br>The segment index maps offsets to their message’s position in the segment log.</p>
+<p>The index file is memory mapped, and the offset look up uses binary search to find the nearest offset less than or equal to the target offset.</p>
+<p>The index file is made up of 8 byte entries, 4 bytes to store the offset relative to the base offset and 4 bytes to store the position. The offset is relative to the base offset so that only 4 bytes is needed to store the offset. For example: let’s say the base offset is 10000000000000000000, rather than having to store subsequent offsets 10000000000000000001 and 10000000000000000002 they are just 1 and 2.</p>
+<p>Kafka wraps compressed messages together<br>Producers sending compressed messages will compress the batch together and send it as the payload of a wrapped message. And as before, the data on disk is exactly the same as what the broker receives from the producer over the network and sends to its consumers.</p>
+<p>KAFKA CONSUMERS AND ZOOKEEPER<br>Prior to Apache Kafka 0.9.0.0, consumers, in addition to the brokers, utilized Zookeeper, to directly store information about the composition of the consumer group, what topics it was consuming, and to periodically commit offsets for each partition being consumed (to enable failover between consumers in the group). With version 0.9.0.0, a new consumer interface was introduced that allows this to be managed directly with the Kafka brokers.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Apache-Kafka-Cookbook&quot;&gt;&lt;a href=&quot;#Apache-Kafka-Cookbook&quot; class=&quot;headerlink&quot; title=&quot;Apache Kafka Cookbook&quot;&gt;&lt;/a&gt;Apache Kafka Cookbook&lt;/
+    
+    </summary>
+    
+    
+      <category term="实时,工具" scheme="http://yoursite.com/tags/%E5%AE%9E%E6%97%B6-%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>neo4j</title>
+    <link href="http://yoursite.com/2016/09/13/neo4j/"/>
+    <id>http://yoursite.com/2016/09/13/neo4j/</id>
+    <published>2016-09-13T04:41:18.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Use-cases"><a href="#Use-cases" class="headerlink" title="Use cases"></a>Use cases</h2><h4 id="Real-Time-Recommendations"><a href="#Real-Time-Recommendations" class="headerlink" title="Real Time Recommendations"></a>Real Time Recommendations</h4><ul>
+<li>Dyanmic systems :  where the data topology is difficult to predict vs relational database data are well structured.</li>
+<li>Dynamic requirements : the evolve with the business</li>
+<li>Problems where the relationships in data contribute meaning and value.</li>
+</ul>
+<p>#The property graph data model</p>
+<p>entity becomes node.<br>relationship are directional.</p>
+<h4 id="why-graph"><a href="#why-graph" class="headerlink" title="why graph"></a>why graph</h4><ul>
+<li>intuitiveness : index free adjacency</li>
+<li>speed : traversal</li>
+<li>agility : cypher</li>
+</ul>
+<p>cypher is all about pattern matching.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MATCH (:Person &#123;name: &quot;Ann&quot;&#125;) - [:FB_FRIENDS] -&gt; (:Person &#123;name:&quot;Dan&quot;&#125;)</div></pre></td></tr></table></figure>
+<h4 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h4><p>Nodes<br>Relationships<br>Properties</p>
+<p>Nodes can be grouped together by applying a label to each memeber.<br> like Color “Person” nodes red<br>A Node can have zero or more labels.<br>labels do not have any properties.</p>
+<p>The real power of Neo4j is connected data.</p>
+<p>Relationship always have direction.<br>Relationship always have a type.<br>Relationship forms patterns of data.</p>
+<p>Relationship can contains properties.</p>
+<p>Cypher – Neo4j’s graph query language</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">#create</div><div class="line">CREATE (ee:Person &#123; name: &quot;Emil&quot;, from: &quot;Sweden&quot;, klout: 99 &#125;)</div><div class="line">MATCH (ee:Person) WHERE ee.name = &quot;Emil&quot; RETURN ee;</div><div class="line">MATCH (ee:Person) WHERE ee.name = &quot;Emil&quot;</div><div class="line">CREATE (js:Person &#123; name: &quot;Johan&quot;, from: &quot;Sweden&quot;, learn: &quot;surfing&quot; &#125;),</div><div class="line">(ir:Person &#123; name: &quot;Ian&quot;, from: &quot;England&quot;, title: &quot;author&quot; &#125;),</div><div class="line">(rvb:Person &#123; name: &quot;Rik&quot;, from: &quot;Belgium&quot;, pet: &quot;Orval&quot; &#125;),</div><div class="line">(ally:Person &#123; name: &quot;Allison&quot;, from: &quot;California&quot;, hobby: &quot;surfing&quot; &#125;),</div><div class="line">(ee)-[:KNOWS &#123;since: 2001&#125;]-&gt;(js),(ee)-[:KNOWS &#123;rating: 5&#125;]-&gt;(ir),</div><div class="line">(js)-[:KNOWS]-&gt;(ir),(js)-[:KNOWS]-&gt;(rvb),</div><div class="line">(ir)-[:KNOWS]-&gt;(js),(ir)-[:KNOWS]-&gt;(ally),</div><div class="line">(rvb)-[:KNOWS]-&gt;(ally)</div><div class="line"></div><div class="line">#pattern matching</div><div class="line"></div><div class="line">MATCH (ee:Person)-[:KNOWS]-(friends)</div><div class="line">WHERE ee.name = &quot;Emil&quot; RETURN ee, friends</div><div class="line"></div><div class="line">#pattern matching for recommendations</div><div class="line">#Johan is learning to surf, so he may want to find a new friend who already does:</div><div class="line"></div><div class="line">MATCH (js:Person)-[:KNOWS]-()-[:KNOWS]-(surfer)</div><div class="line">WHERE js.name = &quot;Johan&quot; AND surfer.hobby = &quot;surfing&quot;</div><div class="line">RETURN DISTINCT surfer</div><div class="line"></div><div class="line">#Movie</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Use-cases&quot;&gt;&lt;a href=&quot;#Use-cases&quot; class=&quot;headerlink&quot; title=&quot;Use cases&quot;&gt;&lt;/a&gt;Use cases&lt;/h2&gt;&lt;h4 id=&quot;Real-Time-Recommendations&quot;&gt;&lt;a href=&quot;#
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>webpack</title>
+    <link href="http://yoursite.com/2016/09/03/webpack/"/>
+    <id>http://yoursite.com/2016/09/03/webpack/</id>
+    <published>2016-09-03T05:54:23.000Z</published>
+    <updated>2017-05-08T06:19:54.758Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -ntlp | grep LISTEN</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;lin
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>shell notes</title>
+    <link href="http://yoursite.com/2016/09/02/shell-notes/"/>
+    <id>http://yoursite.com/2016/09/02/shell-notes/</id>
+    <published>2016-09-02T00:50:18.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Invoking-the-shell"><a href="#Invoking-the-shell" class="headerlink" title="Invoking the shell"></a>Invoking the shell</h3><p>bash [options] [arguments]<br>–help<br>–init-file file<br>use file as the startup file instead of ~/.bashrc<br>–noprofile<br>do not read /etc/profile or any of the personal startup files.<br>–norc<br>-,–<br>arguments (script name)$0,[$1,$2…]</p>
+<h3 id="Exit-Status"><a href="#Exit-Status" class="headerlink" title="Exit Status"></a>Exit Status</h3><p>$?</p>
+<h3 id="Brace-Expansion"><a href="#Brace-Expansion" class="headerlink" title="Brace Expansion"></a>Brace Expansion</h3><ul>
+<li>pre{start..end[..incr]}post</li>
+<li>pre{X,Y[,Z…]}post</li>
+</ul>
+<h3 id="Quoting"><a href="#Quoting" class="headerlink" title="Quoting"></a>Quoting</h3><p>Quoting disables a character’s special meaning and allows it to be used iterally.</p>
+<h3 id="Jobs-control"><a href="#Jobs-control" class="headerlink" title="Jobs control"></a>Jobs control</h3><p>ctrl+z,bg,fg</p>
+<h3 id="Screen"><a href="#Screen" class="headerlink" title="Screen"></a>Screen</h3><p>Ctrl-a : resize 70</p>
+<h3 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#set password</span></div><div class="line">sudo mysqld_safe --skip-grant-tables</div><div class="line"><span class="comment">#open new terminal</span></div><div class="line">mysql -u root</div><div class="line"><span class="comment">##old version</span></div><div class="line"><span class="comment">##UPDATE mysql.user SET Password=PASSWORD('new-password') WHERE User='root';</span></div><div class="line">UPDATE mysql.user SET authentication_string=PASSWORD(<span class="string">"new-password"</span>) WHERE User=<span class="string">'root'</span>;</div><div class="line">FLUSH PRIVILEGES;</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<h3 id="To-schedule-a-task-that-runs-every-N-minutes-ON-WINDOWS"><a href="#To-schedule-a-task-that-runs-every-N-minutes-ON-WINDOWS" class="headerlink" title="To schedule a task that runs every N minutes ON WINDOWS"></a>To schedule a task that runs every N minutes ON WINDOWS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">schtasks /create /tn &lt;TaskName&gt; /tr &lt;TaskRun&gt; /sc minute [/mo &#123;1 - 1439&#125;] [/st &lt;HH:MM&gt;] [/sd &lt;StartDate&gt;] [/ed &lt;EndDate&gt;] [&#123;/et &lt;HH:MM&gt; | /du &lt;HHHH:MM&gt;&#125; [/k]] [/it] [/ru &#123;[&lt;Domain&gt;\]&lt;User&gt; [/rp &lt;Password&gt;] | System&#125;] [/s &lt;Computer&gt; [/u [&lt;Domain&gt;\]&lt;User&gt; [/p &lt;Password&gt;]]]</div><div class="line"></div><div class="line">two examples</div><div class="line"></div><div class="line">schtasks /create /sc minute /mo 20 /tn &quot;Security Script&quot; /tr \\central\data\scripts\sec.vbs</div><div class="line"></div><div class="line">schtasks /create /tn &quot;Security Script&quot; /tr sec.vbs /sc minute /mo 100 /st 17:00 /et 08:00 /k</div></pre></td></tr></table></figure>
+<h3 id="Set-TimeZone-on-ubuntu"><a href="#Set-TimeZone-on-ubuntu" class="headerlink" title="Set TimeZone on ubuntu"></a>Set TimeZone on ubuntu</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo dpkg-reconfigure tzdata</div></pre></td></tr></table></figure>
+<h3 id="yesterday-on-bash"><a href="#yesterday-on-bash" class="headerlink" title="yesterday on bash"></a>yesterday on bash</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">ddate=`date -d &quot;yesterday&quot; &apos;+%Y-%m-%d&apos;`</div><div class="line">echo $ddateta</div><div class="line"></div><div class="line">#onpython</div><div class="line">from datetime import datetime , timedelta</div><div class="line">import pytz</div><div class="line"></div><div class="line">#get yesterday as fetching parameters</div><div class="line">today = datetime.now(pytz.timezone(&apos;Asia/Shanghai&apos;))</div><div class="line"></div><div class="line">yesterday = today - timedelta(1)</div><div class="line"># ddate = yesterday.astimezone(to_zone).strftime(&quot;%Y-%m-%d&quot;)</div><div class="line"></div><div class="line">ddate = datetime.strftime(yesterday, &quot;%Y-%m-%d&quot;)</div></pre></td></tr></table></figure>
+<h3 id="Port"><a href="#Port" class="headerlink" title="Port"></a>Port</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -ntlp | grep LISTEN</div></pre></td></tr></table></figure>
+<p>Login Shells:</p>
+<ul>
+<li><a href="http://dghubble.com/blog/posts/.bashprofile-.profile-and-.bashrc-conventions/" target="_blank" rel="external">Bash Configurations Demystified</a>.</li>
+<li><a href="https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html" target="_blank" rel="external">Bash Startup Files</a>.</li>
+</ul>
+<p>Daily shells:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">find . -name *.xml | xargs grep error</div><div class="line">grep -i &apos;amazon\.(de\|com)&apos;  --color</div><div class="line">nohup sh -c &apos;ls -f images/ | wc -l &apos; 2&gt;&amp;1 &gt;&gt; images.num &amp;</div><div class="line">nohup find /images/ -type f -mtime +5 -delete &amp;</div></pre></td></tr></table></figure></p>
+<h3 id="Gitflow-PR"><a href="#Gitflow-PR" class="headerlink" title="Gitflow PR"></a>Gitflow PR</h3><ul>
+<li><a href="https://www.thinkful.com/learn/github-pull-request-tutorial/" target="_blank" rel="external">PR Tutorial</a>.</li>
+</ul>
+<h3 id="Git-Flow"><a href="#Git-Flow" class="headerlink" title="Git Flow"></a>Git Flow</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">git remote add apache-github https://github.com/apache/incubator-xxx.git</div><div class="line"></div><div class="line">git branch -D master</div><div class="line"></div><div class="line">git checkout apache-github/master -b master</div><div class="line"></div><div class="line">git checkout -b MERGIN_PR_1</div><div class="line"></div><div class="line">git reset HEAD~1</div><div class="line"></div><div class="line">git commit -am &quot;[MINOR] Modify README.md&quot;</div><div class="line"></div><div class="line">git remote add apache-git https://git-wip-us.apache.org/repos/asf/incubator-xxx.git</div><div class="line"></div><div class="line"># remove ? by git commitspec</div><div class="line">git push origin :ShowOldVersion</div><div class="line"></div><div class="line">### flow</div><div class="line">git branch -D master</div><div class="line">git checkout apache-git/master -b master</div><div class="line">git pull apache-git master</div><div class="line">git checkout -b MergeScript</div><div class="line">git add .</div><div class="line">git commit -am &quot;Chmod +x on merge script&quot;</div><div class="line">git push origin MergeScript</div><div class="line">./merge_pr.py</div></pre></td></tr></table></figure>
+<h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mvn <span class="built_in">help</span>:effective-pom &gt; eff.txt</div><div class="line"></div><div class="line">mvn archetype:generate</div><div class="line"></div><div class="line">mvn dependency:tree -Dverbose -Dincludes=javax.servlet</div></pre></td></tr></table></figure>
+<h3 id="Hadoop-Config-and-commands"><a href="#Hadoop-Config-and-commands" class="headerlink" title="Hadoop Config and commands"></a>Hadoop Config and commands</h3><h4 id="core-site"><a href="#core-site" class="headerlink" title="core-site"></a>core-site</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/Cellar/hadoop/hdfs/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>A base for other temporary directories.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span>                                     </div><div class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span>                             </div><div class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span>                                                       </div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="mapred-site"><a href="#mapred-site" class="headerlink" title="mapred-site"></a>mapred-site</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapred.job.tracker<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>localhost:9010<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">       <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="hdfs-site"><a href="#hdfs-site" class="headerlink" title="hdfs-site"></a>hdfs-site</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>format namenode before start hadoop</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hdfs namenode -format</div></pre></td></tr></table></figure>
+<p>links for my hadoop</p>
+<ul>
+<li>Resource Manager: <a href="http://localhost:50070" target="_blank" rel="external">http://localhost:50070</a></li>
+<li>JobTracker: <a href="http://localhost:8088" target="_blank" rel="external">http://localhost:8088</a></li>
+<li>Specific Node Information: <a href="http://localhost:8042" target="_blank" rel="external">http://localhost:8042</a></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">describe</span> formatted  user_profile;</div></pre></td></tr></table></figure>
+<h3 id="search-file-in-github-com"><a href="#search-file-in-github-com" class="headerlink" title="search file in github.com"></a>search file in github.com</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">filename:FileInputFormat.java package org.apache.hadoop.mapred org:apache</div></pre></td></tr></table></figure>
+<h3 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a>Hive</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; CREATE DATABASE metastore;</div><div class="line">mysql&gt; USE metastore;</div><div class="line">mysql&gt; CREATE USER &apos;hive&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;password&apos;;</div><div class="line">mysql&gt; GRANT SELECT,INSERT,UPDATE,DELETE,ALTER,CREATE ON metastore.* TO &apos;hive&apos;@&apos;localhost&apos;;</div><div class="line"></div><div class="line">remember to start hive metastore in background</div><div class="line">hive --service metastore &amp;</div></pre></td></tr></table></figure>
+<h3 id="My-MAC-ENV"><a href="#My-MAC-ENV" class="headerlink" title="My MAC ENV"></a>My MAC ENV</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">brew services list</div><div class="line">brew services start elasticsearch</div><div class="line">mysql -u root -p lock</div><div class="line">/usr/local/Cellar/hadoop</div><div class="line">/usr/local/Cellar/hive</div><div class="line">/usr/local/Cellar/mysql</div><div class="line">/usr/local/Cellar/mongo</div><div class="line"></div><div class="line">##instance</div><div class="line">/usr/local/var/mysql</div><div class="line"></div><div class="line">#LaunchAgents</div><div class="line">sudo rm ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist</div><div class="line"></div><div class="line"></div><div class="line">### SSH -KEY</div></pre></td></tr></table></figure>
+<p>pbcopy &lt; ~/.ssh/id_rsa.pub</p>
+<p>##show fingerprint<br>ssh-keygen -lf /path/to/ssh/key<br>```</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Invoking-the-shell&quot;&gt;&lt;a href=&quot;#Invoking-the-shell&quot; class=&quot;headerlink&quot; title=&quot;Invoking the shell&quot;&gt;&lt;/a&gt;Invoking the shell&lt;/h3&gt;&lt;p&gt;bash [
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pandas ipython</title>
+    <link href="http://yoursite.com/2016/08/20/pandas-ipython/"/>
+    <id>http://yoursite.com/2016/08/20/pandas-ipython/</id>
+    <published>2016-08-20T07:45:39.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="CH3-pandas-data-structures"><a href="#CH3-pandas-data-structures" class="headerlink" title="CH3 pandas data structures"></a>CH3 pandas data structures</h3><h4 id="NumPy-ndarrays"><a href="#NumPy-ndarrays" class="headerlink" title="NumPy ndarrays"></a>NumPy ndarrays</h4><p>creation<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">import numpy as np</div><div class="line">ar1 =  np.array([0,1,2,3,4])</div><div class="line">ar1.shape</div><div class="line">ar1.ndim</div><div class="line">ar3 =  np.arange(12)</div><div class="line">#start,end(exclusive),step</div><div class="line">ar4 =  np.arange(3,10,3)</div><div class="line">#linspace, start,end and number of elements</div><div class="line">ar5 = np.linspace(1,4,4)</div><div class="line">ar6 = np.ones((2,3,4))</div><div class="line">ar7 = np.zeros((4,2))</div><div class="line"># identity matrix</div><div class="line">ar8 = np.eye(3)</div><div class="line"># diagonal matrix</div><div class="line">ar9 = np.diag((2,1,4,6))</div><div class="line"># rand</div><div class="line">np.random.seed(100)</div><div class="line">ar10 = np.random.rand(3)</div><div class="line">#empty</div><div class="line">ar11 = np.empty((3,2))</div><div class="line">#tile</div><div class="line">np.tile(np.array([[1,2],[6,7]]),(3,4))</div><div class="line"></div><div class="line">sar = np.array([&apos;google&apos;,&apos;alibaba&apos;,&apos;yahoo&apos;,&apos;facebook&apos;])</div><div class="line">sar.dtype</div><div class="line"></div><div class="line">ar = np.arange(5)</div><div class="line">ar[::-1]</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>the default dtype in NumPy is float, in the case of string, dtype is the length of the longest string in the array.</p>
+<p>Indexing and slicing</p>
+<p>Arrays can be reversed using the ::-1 idiom as </p>
+<p>multi-dimensional arrays are indexed using tuples of integers as ar[1,1]</p>
+<p>arrays can be sliced by using the following syntax: ar[startIndex,endIndex,stepValue]<br>ar[1:5:2]<br>obtain the first n-elements using ar[:n], the implicit assumption here is taht startIndex=0, and Step=1<br>start an element 4 until the end ar[4:]<br>slice array with step 3 as ar[::3]</p>
+<p>Array masking<br>evenMask=(ar%2 == 0)</p>
+<p>evenNums = ar[evenMask]</p>
+<p>replace value with masking</p>
+<p>ar[ar==’ ‘] = ‘USA’</p>
+<p>Copys vs views<br>ar[:3].copy()</p>
+<h1 id="dot-operator"><a href="#dot-operator" class="headerlink" title="dot operator"></a>dot operator</h1><p>ar.dot(ar2)</p>
+<h1 id="transpose"><a href="#transpose" class="headerlink" title="transpose"></a>transpose</h1><p>ar.T<br>np.transpose(ar)</p>
+<p>#array equal<br>np.array_equal(ar,ar2) </p>
+<p>#or<br>np.all(ar==ar2)</p>
+<p>#reduce<br>ar=np.arange(1,5)<br>ar.prod()<br>np.prod(ar,axis=0)<br>np.prod(ar,axis=1)<br>ar.sum()<br>ar.mean()<br>np.median(ar)</p>
+<p>#statistics<br>ar.mean()<br>ar.std()<br>ar.var(axis=0)<br>ar.cumsum()</p>
+<p>#logical<br>np.all(ar&lt;11)<br>np.any((ar%7)==0)</p>
+<p>broadcasting</p>
+<p>shape manipulation</p>
+<p>#flatten by<br>ar.ravel()<br>ar.T.ravel()<br>ar.reshape(3,5)</p>
+<p>#array sort<br>ar.sort(axis=1)</p>
+<p>Data Structures in pandas<br>series : 1D NumPy with an array of lables.<br>dataframe : 2D labeled array. a dataframe column is a series strcture. dictionary of both columns and rows are indexed.<br>panel :  3D array (items-&gt;axis 0, major_axis-&gt;axis 1, minor_axis-&gt;axis 2)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">USData = pd.DataFrame(np.array([[249.62,8900],[282.16,12680],[309.35,14940]]),</div><div class="line">                      columns=[&apos;Population(M)&apos;,&apos;GDP($B)&apos;],</div><div class="line">                      index=[1990,2000,2010]</div><div class="line">                      )</div><div class="line"></div><div class="line"></div><div class="line">ChinaData = pd.DataFrame(np.array([[1133.68,390.28],[1266.83,1198.48],[1339.72,6988.47]]),</div><div class="line">                      columns=[&apos;Population(M)&apos;,&apos;GDP($B)&apos;],</div><div class="line">                      index=[1990,2000,2010]</div><div class="line">                      )</div><div class="line"></div><div class="line">US_China_Data = &#123;&apos;US&apos;:USData,&apos;China&apos;:ChinaData&#125;</div><div class="line"></div><div class="line">p = pd.Panel(US_China_Data)</div></pre></td></tr></table></figure>
+<p>Label,integer and mixed indexing</p>
+<p>table.loc[[‘Jan’,’April’]]<br>table.loc[‘Jan’:’Mar’]<br>table.loc[:,table.loc[‘2013-Q1’]&gt;110]</p>
+<p>the .iloc operator supports interger-based position indexing, it accepts the following as inputs:<br>.iloc[2,0:2] row2 , col [0-2)<br>.iloc[2:3,:] row3 only<br>.iloc[3]</p>
+<h3 id="CH5-operations-in-pandas"><a href="#CH5-operations-in-pandas" class="headerlink" title="CH5 operations in pandas"></a>CH5 operations in pandas</h3><p>nationsGrp[‘Attendance’].agg({‘Total’:np.sum, ‘Average’:np.mean, ‘Deviation’:np.std})<br>US_China_Data.groupby(level=’Month’).filter(lambda x:np.all([x[col] &gt; 100 for col in US_China_Data.columns]))</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.historicaldata where symbol = &quot;002197.SZ&quot; and startDate = &quot;2016-01-01&quot; and endDate = &quot;2016-08-20&quot;&amp;format=json&amp;diagnostics=true&amp;env=store://datatables.org/alltableswithkeys&amp;callback=</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;CH3-pandas-data-structures&quot;&gt;&lt;a href=&quot;#CH3-pandas-data-structures&quot; class=&quot;headerlink&quot; title=&quot;CH3 pandas data structures&quot;&gt;&lt;/a&gt;CH3 pandas data structures&lt;/h3&gt;&lt;h4 id=&quot;NumPy-ndarrays&quot;&gt;&lt;a href=&quot;#NumPy-ndarrays&quot; class=&quot;headerlink&quot; title=&quot;NumPy ndarrays&quot;&gt;&lt;/a&gt;NumPy ndarrays&lt;/h4&gt;&lt;p&gt;creation&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;import numpy as np&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar1 =  np.array([0,1,2,3,4])&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar1.shape&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar1.ndim&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar3 =  np.arange(12)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#start,end(exclusive),step&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar4 =  np.arange(3,10,3)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#linspace, start,end and number of elements&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar5 = np.linspace(1,4,4)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar6 = np.ones((2,3,4))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar7 = np.zeros((4,2))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# identity matrix&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar8 = np.eye(3)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# diagonal matrix&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar9 = np.diag((2,1,4,6))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# rand&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;np.random.seed(100)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar10 = np.random.rand(3)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#empty&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar11 = np.empty((3,2))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#tile&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;np.tile(np.array([[1,2],[6,7]]),(3,4))&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sar = np.array([&amp;apos;google&amp;apos;,&amp;apos;alibaba&amp;apos;,&amp;apos;yahoo&amp;apos;,&amp;apos;facebook&amp;apos;])&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sar.dtype&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar = np.arange(5)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;ar[::-1]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python91advice</title>
+    <link href="http://yoursite.com/2016/08/16/python91advice/"/>
+    <id>http://yoursite.com/2016/08/16/python91advice/</id>
+    <published>2016-08-16T12:55:38.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="CH1-pythonic"><a href="#CH1-pythonic" class="headerlink" title="CH1 pythonic"></a>CH1 pythonic</h3><p>learn from pythonic framework, like Flask, generators</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">def quicksort(array):</div><div class="line">	less=[]; greater=[]</div><div class="line">	if len(array) &lt;=1:</div><div class="line">		return array</div><div class="line">	pivot = array.pop()</div><div class="line">	for x in array:</div><div class="line">		if x&lt;= pivot: less.append(x)</div><div class="line">		else: greater.append(x)</div><div class="line">	return quicksort(less)+[pivot]+quicksort(greater)</div><div class="line"></div><div class="line">a,b = b,a </div><div class="line"></div><div class="line">with open(path,&apos;r&apos;) as f:</div><div class="line">	do_something(f)</div><div class="line"></div><div class="line">print &apos;hello %(name)s!&apos; % &#123;&apos;name&apos;: &apos;Tom&apos;&#125;</div><div class="line"></div><div class="line">##</div><div class="line"></div><div class="line">from flask import Flask</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line">@app.route(&apos;/&apos;)</div><div class="line">def hello():</div><div class="line">    return &quot;Hi&quot;</div><div class="line"></div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    app.run()</div></pre></td></tr></table></figure>
+<p>包和模块的潮流是：</p>
+<ul>
+<li>包和模块的命名采用小写，单数形式，而且短小。</li>
+<li>包通常仅作为命名空间，如只包含空的<strong>init</strong>.py文件</li>
+</ul>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">person_info=&#123;&apos;name&apos;:&apos;john&apos;,&apos;email&apos;:&apos;xxx@gmail.com&apos;&#125;</div><div class="line">#check lang reference, and library reference.</div><div class="line">#say requests library</div><div class="line"></div><div class="line">import requests</div><div class="line">r = requests.get(&apos;https://api.github.com&apos;,auth=(&apos;user&apos;,&apos;pass&apos;))</div><div class="line">print r.status_code</div><div class="line">print r.headers(&apos;content-type&apos;)</div><div class="line"></div><div class="line">#for code review just install pep8</div><div class="line">pip install -U pep8</div><div class="line">#then</div><div class="line">pep8 --first optparse.py</div><div class="line">#google use Pychecker do style guide check</div><div class="line"></div><div class="line">from dateutil import tz</div><div class="line">from datetime import datetime</div><div class="line"></div><div class="line"># UTC Zone</div><div class="line">from_zone = tz.gettz(&apos;UTC&apos;)</div><div class="line"># China Zone</div><div class="line">to_zone = tz.gettz(&apos;Asia/Shanghai&apos;)</div><div class="line"></div><div class="line">utc = datetime.utcnow()</div><div class="line"></div><div class="line"># Tell the datetime object that it&apos;s in UTC time zone</div><div class="line">utc = utc.replace(tzinfo=from_zone)</div><div class="line"></div><div class="line"># Convert time zone</div><div class="line">local = utc.astimezone(to_zone)</div><div class="line">print datetime.strftime(local, &quot;%Y-%m-%d %H:%M:%S&quot;)</div></pre></td></tr></table></figure>
+<p>Python Cookbook</p>
+<h3 id="Scrapy"><a href="#Scrapy" class="headerlink" title="Scrapy"></a>Scrapy</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;CH1-pythonic&quot;&gt;&lt;a href=&quot;#CH1-pythonic&quot; class=&quot;headerlink&quot; title=&quot;CH1 pythonic&quot;&gt;&lt;/a&gt;CH1 pythonic&lt;/h3&gt;&lt;p&gt;learn from pythonic framework, like Flask, generators&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;def quicksort(array):&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	less=[]; greater=[]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	if len(array) &amp;lt;=1:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		return array&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	pivot = array.pop()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	for x in array:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		if x&amp;lt;= pivot: less.append(x)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		else: greater.append(x)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	return quicksort(less)+[pivot]+quicksort(greater)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;a,b = b,a &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;with open(path,&amp;apos;r&amp;apos;) as f:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	do_something(f)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;print &amp;apos;hello %(name)s!&amp;apos; % &amp;#123;&amp;apos;name&amp;apos;: &amp;apos;Tom&amp;apos;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;##&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;from flask import Flask&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;app = Flask(__name__)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;@app.route(&amp;apos;/&amp;apos;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;def hello():&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    return &amp;quot;Hi&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if __name__ == &amp;quot;__main__&amp;quot;:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    app.run()&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;包和模块的潮流是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;包和模块的命名采用小写，单数形式，而且短小。&lt;/li&gt;
+&lt;li&gt;包通常仅作为命名空间，如只包含空的&lt;strong&gt;init&lt;/strong&gt;.py文件&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Neurosis and Human growth</title>
+    <link href="http://yoursite.com/2016/08/12/Neurosis-and-Human-growth/"/>
+    <id>http://yoursite.com/2016/08/12/Neurosis-and-Human-growth/</id>
+    <published>2016-08-12T00:01:25.000Z</published>
+    <updated>2017-05-08T06:19:54.754Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

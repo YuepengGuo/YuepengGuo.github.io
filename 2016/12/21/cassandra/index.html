@@ -1,0 +1,591 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="工具," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="逻辑下的数据" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="CQLSH1234567CREATE KEYSPACE sz WITH REPLICATION= &amp;#123;&amp;apos;class&amp;apos;:&amp;apos;SimpleStrategy&amp;apos;, &amp;apos;replication_factor&amp;apos;:1&amp;#125;;CREATE KEYSPACE sh WITH REPLICATION= &amp;#123;&amp;apos;class&amp;apos;">
+<meta name="keywords" content="工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cassandra">
+<meta property="og:url" content="http://yoursite.com/2016/12/21/cassandra/index.html">
+<meta property="og:site_name" content="逻辑下的数据">
+<meta property="og:description" content="CQLSH1234567CREATE KEYSPACE sz WITH REPLICATION= &amp;#123;&amp;apos;class&amp;apos;:&amp;apos;SimpleStrategy&amp;apos;, &amp;apos;replication_factor&amp;apos;:1&amp;#125;;CREATE KEYSPACE sh WITH REPLICATION= &amp;#123;&amp;apos;class&amp;apos;">
+<meta property="og:updated_time" content="2017-05-08T06:19:54.754Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cassandra">
+<meta name="twitter:description" content="CQLSH1234567CREATE KEYSPACE sz WITH REPLICATION= &amp;#123;&amp;apos;class&amp;apos;:&amp;apos;SimpleStrategy&amp;apos;, &amp;apos;replication_factor&amp;apos;:1&amp;#125;;CREATE KEYSPACE sh WITH REPLICATION= &amp;#123;&amp;apos;class&amp;apos;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/21/cassandra/"/>
+
+  <title> cassandra | 逻辑下的数据 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">逻辑下的数据</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Mushin (No Mind)</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                cassandra
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-21T00:43:00+00:00" content="2016-12-21">
+              2016-12-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="CQLSH"><a href="#CQLSH" class="headerlink" title="CQLSH"></a>CQLSH</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CREATE KEYSPACE sz</div><div class="line"> WITH REPLICATION=</div><div class="line"> &#123;&apos;class&apos;:&apos;SimpleStrategy&apos;, &apos;replication_factor&apos;:1&#125;;</div><div class="line"></div><div class="line">CREATE KEYSPACE sh</div><div class="line"> WITH REPLICATION=</div><div class="line"> &#123;&apos;class&apos;:&apos;SimpleStrategy&apos;, &apos;replication_factor&apos;:1&#125;;</div></pre></td></tr></table></figure>
+<h1 id="Type-System"><a href="#Type-System" class="headerlink" title="Type System"></a>Type System</h1><p>text : utf-8<br>ascii</p>
+<h2 id="Dates-and-times"><a href="#Dates-and-times" class="headerlink" title="Dates and times"></a>Dates and times</h2><p>dates and times can be stored using timestamp, which holds data/time data at millisecond precision.</p>
+<h2 id="Timeuuid"><a href="#Timeuuid" class="headerlink" title="Timeuuid"></a>Timeuuid</h2><p>has specical functionality to convert between uuid and timestamps.<br>UUID(timestamp+mac, 8-4-4-4-12 literal)</p>
+<h2 id="Blobs"><a href="#Blobs" class="headerlink" title="Blobs"></a>Blobs</h2><p>blob store unstructured binary data such as image, audio, and encrypted data.</p>
+<h1 id="Partition-key"><a href="#Partition-key" class="headerlink" title="Partition key"></a>Partition key</h1><p>the actual ordering is determined by the token of the primary key.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SELECT &quot;username&quot;, token(&quot;username&quot;)</div><div class="line">FROM users;</div></pre></td></tr></table></figure></p>
+<h1 id="Clustering-key"><a href="#Clustering-key" class="headerlink" title="Clustering key"></a>Clustering key</h1><p>determine the ordering of rows within a partition.</p>
+<h1 id="Mental-model"><a href="#Mental-model" class="headerlink" title="Mental model"></a>Mental model</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Map&lt;RowKey, SortedMap&lt;ColumnKey, ColumnValue&gt;&gt;</div></pre></td></tr></table></figure>
+<h1 id="Static-Column"><a href="#Static-Column" class="headerlink" title="Static Column"></a>Static Column</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE &quot;users_with_status_updates&quot; (</div><div class="line">  &quot;username&quot; text,</div><div class="line">  &quot;id&quot; timeuuid,</div><div class="line">  &quot;email&quot; text STATIC,</div><div class="line">  &quot;encrypted_password&quot; blob STATIC,</div><div class="line">  &quot;body&quot; text,</div><div class="line">  PRIMARY KEY (&quot;username&quot;, &quot;id&quot;)</div><div class="line">);</div><div class="line"></div><div class="line"></div><div class="line">Since the email and encrypted_password columns are properties of a user, </div><div class="line">not of a specific status update, we declare them STATIC. </div><div class="line">Any column that is declared STATIC has one value per partition key.</div></pre></td></tr></table></figure>
+<h1 id="TIMEUUID"><a href="#TIMEUUID" class="headerlink" title="TIMEUUID"></a>TIMEUUID</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE &quot;user_status_updates&quot; (</div><div class="line">  &quot;username&quot; text,</div><div class="line">  &quot;id&quot; timeuuid,</div><div class="line">  &quot;body&quot; text,</div><div class="line">  PRIMARY KEY (&quot;username&quot;, &quot;id&quot;)</div><div class="line">);</div><div class="line"></div><div class="line">CREATE TABLE &quot;reversed_user_status_updates&quot; (</div><div class="line">  &quot;username&quot; text,</div><div class="line">  &quot;id&quot; timeuuid,</div><div class="line">  &quot;body&quot; text,</div><div class="line">  PRIMARY KEY (&quot;username&quot;, &quot;id&quot;)</div><div class="line">) WITH CLUSTERING ORDER BY (&quot;id&quot; DESC);</div><div class="line"></div><div class="line">SELECT &quot;username&quot;, &quot;id&quot;, &quot;body&quot;, DATEOF(&quot;id&quot;)</div><div class="line">FROM &quot;user_status_updates&quot;;</div><div class="line"></div><div class="line"></div><div class="line">SELECT &quot;username&quot;, &quot;id&quot;, &quot;body&quot;, UNIXTIMESTAMPOF(&quot;id&quot;)</div><div class="line">FROM &quot;user_status_updates&quot;;</div><div class="line"></div><div class="line">INSERT INTO &quot;user_status_updates&quot; (&quot;username&quot;, &quot;id&quot;, &quot;body&quot;)</div><div class="line">VALUES (&apos;bob&apos;, NOW(), &apos;Bob Update 3&apos;);</div></pre></td></tr></table></figure>
+<h2 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">SELECT &quot;id&quot;, DATEOF(&quot;id&quot;), &quot;body&quot;</div><div class="line">FROM &quot;user_status_updates&quot;</div><div class="line">WHERE &quot;username&quot; = &apos;alice&apos; //partition key</div><div class="line">AND &quot;id&quot; &gt;= MINTIMEUUID(&apos;2014-05-01&apos;) //clustering key</div><div class="line">AND &quot;id&quot; &lt;= MAXTIMEUUID(&apos;2014-05-31&apos;);</div><div class="line"></div><div class="line"></div><div class="line">SELECT &quot;observed_at&quot;, &quot;client_type&quot;</div><div class="line">FROM &quot;status_update_views&quot;</div><div class="line">WHERE &quot;status_update_username&quot; = &apos;alice&apos;</div><div class="line">  AND &quot;status_update_id&quot; = 76e7a4d0-e796-11e3-90ce-5f98e903bf02</div><div class="line">  AND &quot;observed_at&quot; &gt;= MINTIMEUUID(&apos;2014-10-05 00:00:00+0000&apos;)</div><div class="line">  AND &quot;observed_at&quot;  &lt; MINTIMEUUID(&apos;2014-10-06 00:00:00+0000&apos;);</div></pre></td></tr></table></figure>
+<h2 id="Aggregation-Counter"><a href="#Aggregation-Counter" class="headerlink" title="Aggregation Counter"></a>Aggregation Counter</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">CREATE TABLE &quot;daily_status_update_views&quot; (</div><div class="line">  &quot;year&quot; int,</div><div class="line">  &quot;date&quot; timestamp,</div><div class="line">  &quot;total_views&quot; counter,</div><div class="line">  &quot;web_views&quot; counter,</div><div class="line">  &quot;mobile_views&quot; counter,</div><div class="line">  &quot;api_views&quot; counter,</div><div class="line">  PRIMARY KEY ((&quot;year&quot;), &quot;date&quot;)</div><div class="line">);</div><div class="line"></div><div class="line">INSERT INTO &quot;status_update_views&quot; (</div><div class="line">  &quot;status_update_username&quot;, &quot;status_update_id&quot;,</div><div class="line">  &quot;observed_at&quot;, &quot;client_type&quot;</div><div class="line">) VALUES (</div><div class="line">  &apos;alice&apos;, 76e7a4d0-e796-11e3-90ce-5f98e903bf02,</div><div class="line">  85a53d10-4cc3-11e4-a7ff-5f98e903bf02,</div><div class="line">  &apos;web&apos;</div><div class="line">);</div><div class="line"></div><div class="line">UPDATE &quot;daily_status_update_views&quot;</div><div class="line">SET &quot;total_views&quot; = &quot;total_views&quot; + 1,</div><div class="line">    &quot;web_views&quot; = &quot;web_views&quot; + 1</div><div class="line">WHERE &quot;year&quot; = 2014</div><div class="line">  AND &quot;date&quot; = &apos;2014-10-05&apos;;</div><div class="line"></div><div class="line">INSERT INTO TABLE daily_aggregate_temp</div><div class="line">SELECT wsid,year, month,day,max(temp) high, min(temp) low</div><div class="line">FROM raw_temp_data</div><div class="line">GROUP BY wsid, year, month, day;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工具/" rel="tag">#工具</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/30/realtime-issue/" rel="next" title="realtime issue">
+                <i class="fa fa-chevron-left"></i> realtime issue
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/26/articles/" rel="prev" title="articles">
+                articles <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/gyp.jpg"
+               alt="简单复杂哥" />
+          <p class="site-author-name" itemprop="name">简单复杂哥</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/guotechfin" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CQLSH"><span class="nav-number">1.</span> <span class="nav-text">CQLSH</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Type-System"><span class="nav-number">2.</span> <span class="nav-text">Type System</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dates-and-times"><span class="nav-number">2.1.</span> <span class="nav-text">Dates and times</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Timeuuid"><span class="nav-number">2.2.</span> <span class="nav-text">Timeuuid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Blobs"><span class="nav-number">2.3.</span> <span class="nav-text">Blobs</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Partition-key"><span class="nav-number">3.</span> <span class="nav-text">Partition key</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Clustering-key"><span class="nav-number">4.</span> <span class="nav-text">Clustering key</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mental-model"><span class="nav-number">5.</span> <span class="nav-text">Mental model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Static-Column"><span class="nav-number">6.</span> <span class="nav-text">Static Column</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TIMEUUID"><span class="nav-number">7.</span> <span class="nav-text">TIMEUUID</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Query"><span class="nav-number">7.1.</span> <span class="nav-text">Query</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Aggregation-Counter"><span class="nav-number">7.2.</span> <span class="nav-text">Aggregation Counter</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">简单复杂哥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

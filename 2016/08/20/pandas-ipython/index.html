@@ -1,0 +1,608 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="工具," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="逻辑下的数据" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="CH3 pandas data structuresNumPy ndarrayscreation12345678910111213141516171819202122232425262728import numpy as npar1 =  np.array([0,1,2,3,4])ar1.shapear1.ndimar3 =  np.arange(12)#start,end(exclusive),">
+<meta name="keywords" content="工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pandas ipython">
+<meta property="og:url" content="http://yoursite.com/2016/08/20/pandas-ipython/index.html">
+<meta property="og:site_name" content="逻辑下的数据">
+<meta property="og:description" content="CH3 pandas data structuresNumPy ndarrayscreation12345678910111213141516171819202122232425262728import numpy as npar1 =  np.array([0,1,2,3,4])ar1.shapear1.ndimar3 =  np.arange(12)#start,end(exclusive),">
+<meta property="og:updated_time" content="2017-05-08T06:19:54.754Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pandas ipython">
+<meta name="twitter:description" content="CH3 pandas data structuresNumPy ndarrayscreation12345678910111213141516171819202122232425262728import numpy as npar1 =  np.array([0,1,2,3,4])ar1.shapear1.ndimar3 =  np.arange(12)#start,end(exclusive),">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/20/pandas-ipython/"/>
+
+  <title> pandas ipython | 逻辑下的数据 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">逻辑下的数据</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Mushin (No Mind)</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                pandas ipython
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-20T07:45:39+00:00" content="2016-08-20">
+              2016-08-20
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="CH3-pandas-data-structures"><a href="#CH3-pandas-data-structures" class="headerlink" title="CH3 pandas data structures"></a>CH3 pandas data structures</h3><h4 id="NumPy-ndarrays"><a href="#NumPy-ndarrays" class="headerlink" title="NumPy ndarrays"></a>NumPy ndarrays</h4><p>creation<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">import numpy as np</div><div class="line">ar1 =  np.array([0,1,2,3,4])</div><div class="line">ar1.shape</div><div class="line">ar1.ndim</div><div class="line">ar3 =  np.arange(12)</div><div class="line">#start,end(exclusive),step</div><div class="line">ar4 =  np.arange(3,10,3)</div><div class="line">#linspace, start,end and number of elements</div><div class="line">ar5 = np.linspace(1,4,4)</div><div class="line">ar6 = np.ones((2,3,4))</div><div class="line">ar7 = np.zeros((4,2))</div><div class="line"># identity matrix</div><div class="line">ar8 = np.eye(3)</div><div class="line"># diagonal matrix</div><div class="line">ar9 = np.diag((2,1,4,6))</div><div class="line"># rand</div><div class="line">np.random.seed(100)</div><div class="line">ar10 = np.random.rand(3)</div><div class="line">#empty</div><div class="line">ar11 = np.empty((3,2))</div><div class="line">#tile</div><div class="line">np.tile(np.array([[1,2],[6,7]]),(3,4))</div><div class="line"></div><div class="line">sar = np.array([&apos;google&apos;,&apos;alibaba&apos;,&apos;yahoo&apos;,&apos;facebook&apos;])</div><div class="line">sar.dtype</div><div class="line"></div><div class="line">ar = np.arange(5)</div><div class="line">ar[::-1]</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>the default dtype in NumPy is float, in the case of string, dtype is the length of the longest string in the array.</p>
+<p>Indexing and slicing</p>
+<p>Arrays can be reversed using the ::-1 idiom as </p>
+<p>multi-dimensional arrays are indexed using tuples of integers as ar[1,1]</p>
+<p>arrays can be sliced by using the following syntax: ar[startIndex,endIndex,stepValue]<br>ar[1:5:2]<br>obtain the first n-elements using ar[:n], the implicit assumption here is taht startIndex=0, and Step=1<br>start an element 4 until the end ar[4:]<br>slice array with step 3 as ar[::3]</p>
+<p>Array masking<br>evenMask=(ar%2 == 0)</p>
+<p>evenNums = ar[evenMask]</p>
+<p>replace value with masking</p>
+<p>ar[ar==’ ‘] = ‘USA’</p>
+<p>Copys vs views<br>ar[:3].copy()</p>
+<h1 id="dot-operator"><a href="#dot-operator" class="headerlink" title="dot operator"></a>dot operator</h1><p>ar.dot(ar2)</p>
+<h1 id="transpose"><a href="#transpose" class="headerlink" title="transpose"></a>transpose</h1><p>ar.T<br>np.transpose(ar)</p>
+<p>#array equal<br>np.array_equal(ar,ar2) </p>
+<p>#or<br>np.all(ar==ar2)</p>
+<p>#reduce<br>ar=np.arange(1,5)<br>ar.prod()<br>np.prod(ar,axis=0)<br>np.prod(ar,axis=1)<br>ar.sum()<br>ar.mean()<br>np.median(ar)</p>
+<p>#statistics<br>ar.mean()<br>ar.std()<br>ar.var(axis=0)<br>ar.cumsum()</p>
+<p>#logical<br>np.all(ar&lt;11)<br>np.any((ar%7)==0)</p>
+<p>broadcasting</p>
+<p>shape manipulation</p>
+<p>#flatten by<br>ar.ravel()<br>ar.T.ravel()<br>ar.reshape(3,5)</p>
+<p>#array sort<br>ar.sort(axis=1)</p>
+<p>Data Structures in pandas<br>series : 1D NumPy with an array of lables.<br>dataframe : 2D labeled array. a dataframe column is a series strcture. dictionary of both columns and rows are indexed.<br>panel :  3D array (items-&gt;axis 0, major_axis-&gt;axis 1, minor_axis-&gt;axis 2)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">USData = pd.DataFrame(np.array([[249.62,8900],[282.16,12680],[309.35,14940]]),</div><div class="line">                      columns=[&apos;Population(M)&apos;,&apos;GDP($B)&apos;],</div><div class="line">                      index=[1990,2000,2010]</div><div class="line">                      )</div><div class="line"></div><div class="line"></div><div class="line">ChinaData = pd.DataFrame(np.array([[1133.68,390.28],[1266.83,1198.48],[1339.72,6988.47]]),</div><div class="line">                      columns=[&apos;Population(M)&apos;,&apos;GDP($B)&apos;],</div><div class="line">                      index=[1990,2000,2010]</div><div class="line">                      )</div><div class="line"></div><div class="line">US_China_Data = &#123;&apos;US&apos;:USData,&apos;China&apos;:ChinaData&#125;</div><div class="line"></div><div class="line">p = pd.Panel(US_China_Data)</div></pre></td></tr></table></figure>
+<p>Label,integer and mixed indexing</p>
+<p>table.loc[[‘Jan’,’April’]]<br>table.loc[‘Jan’:’Mar’]<br>table.loc[:,table.loc[‘2013-Q1’]&gt;110]</p>
+<p>the .iloc operator supports interger-based position indexing, it accepts the following as inputs:<br>.iloc[2,0:2] row2 , col [0-2)<br>.iloc[2:3,:] row3 only<br>.iloc[3]</p>
+<h3 id="CH5-operations-in-pandas"><a href="#CH5-operations-in-pandas" class="headerlink" title="CH5 operations in pandas"></a>CH5 operations in pandas</h3><p>nationsGrp[‘Attendance’].agg({‘Total’:np.sum, ‘Average’:np.mean, ‘Deviation’:np.std})<br>US_China_Data.groupby(level=’Month’).filter(lambda x:np.all([x[col] &gt; 100 for col in US_China_Data.columns]))</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.historicaldata where symbol = &quot;002197.SZ&quot; and startDate = &quot;2016-01-01&quot; and endDate = &quot;2016-08-20&quot;&amp;format=json&amp;diagnostics=true&amp;env=store://datatables.org/alltableswithkeys&amp;callback=</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工具/" rel="tag">#工具</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/16/python91advice/" rel="next" title="python91advice">
+                <i class="fa fa-chevron-left"></i> python91advice
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/02/shell-notes/" rel="prev" title="shell notes">
+                shell notes <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/gyp.jpg"
+               alt="简单复杂哥" />
+          <p class="site-author-name" itemprop="name">简单复杂哥</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/guotechfin" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CH3-pandas-data-structures"><span class="nav-number">1.</span> <span class="nav-text">CH3 pandas data structures</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NumPy-ndarrays"><span class="nav-number">1.1.</span> <span class="nav-text">NumPy ndarrays</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dot-operator"><span class="nav-number"></span> <span class="nav-text">dot operator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#transpose"><span class="nav-number"></span> <span class="nav-text">transpose</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CH5-operations-in-pandas"><span class="nav-number">1.</span> <span class="nav-text">CH5 operations in pandas</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">简单复杂哥</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
