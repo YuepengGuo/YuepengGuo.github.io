@@ -111,9 +111,41 @@ Count to determine where records go. Go through the records in order putting the
  + Glue the answers together so as to obtain the answer to your larger instance.
 
 
+#### check list for recursive programs
+
+```
+algorithm Alg(a,b,c):
+# precond :  a is tuple, b an integer, c binary tree
+# postcond:  x y z
+
+begin::
+	if(a,b,c) is sufficiently small instance, return (0,0,0)
+	(a1,b1,c1) = a part of (a,b,c)
+	(x1,y1,z1) = Alg(a1,b1,c1)
+	(a2,b2,c2) = a different part of (a,b,c)
+	(x2,y2,z2) = Alg(a2,b2,c2)
+	(x,y,z) = combine((x1,y1,z1) and (x2,y2,z2))
+	return (x,y,z)
+end algo
+
+# NO global variables...
+
+```
+
+### Recursion on Trees
+A binary tree is 
+ + the empty tree. (base case)
+ + a node with a right and a left sub-tree.
+
+### Some init state
+ + Integer.MAX,
+ + Integer.MIN,
+ + 0
+ + Empty
+ + 1 for Product
 
 
-
+#### Evaluation/Parse expression on Tree 
 
 
 
