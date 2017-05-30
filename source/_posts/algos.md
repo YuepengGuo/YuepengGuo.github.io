@@ -149,3 +149,179 @@ A binary tree is
 
 
 
+## Generic Searching
+
+```
+algorithm Search(G,s)
+#precond  : G is a directed or undirected graph and s is one of its nodes
+#postcond : The output consists of all the nodes u that are reachable by a path in G from s.
+
+begin::
+	foundHandled    = NULL
+	foundNotHandled = {s}
+	loop
+		#loop invariant: see above.
+		exit when foundNotHandled = NULL
+		let u be some node from foundNotHandled
+		for each v connected to u:
+			if v has not previously been found then
+				add v to the foundNotHandled
+			end if
+		end for
+		move u from foundNotHandled to foundHandled.
+	end loop
+	return foundHandled
+end algorithm
+
+```
+
+### ShortestPath
+
+```
+algorithm ShortestPath(G,s)
+#precond  : G is a directed or undirected graph and s is one of its nodes
+#postcond : P specifies a shortest path from s to each node of G and d specifies their lengths.
+
+begin::
+	foundHandled    = NULL
+	foundNotHandled = {s}
+	d(s) = 0, p(s) = NULL
+	loop
+		#loop invariant: see above.
+		exit when foundNotHandled = NULL
+		let u be some node from foundNotHandled
+		for each v connected to u:
+			if v has not previously been found then
+				add v to the foundNotHandled
+				d(v) = d(u) + 1
+				p(v) = u
+			end if
+		end for
+		move u from foundNotHandled to foundHandled.
+	end loop
+	(for unfound v, d(v) = INFINITE )
+	return (d,p)
+end algorithm
+
+
+```
+
+
+### Dijkstra's
+
+```
+algorithm Dijkstra(G,s)
+#precond  : G is a directed or undirected graph and s is one of its nodes
+#postcond : P specifies a shortest path from s to each node of G and d specifies their lengths.
+
+begin::
+	foundHandled    = NULL
+	foundNotHandled = ---{s}---, priority queue containing all nodes, Priorities given by d(v)
+	d(s) = 0, p(s) = NULL
+	loop
+		#loop invariant: see above.
+		exit when foundNotHandled = NULL
+		let u be some node from foundNotHandled
+		for each v connected to u:
+			foundPathLength =  d(u) + w(u,v)
+			if d(v) > foundPathLength then
+				d(v) = foundPathLength
+				(update the nothandled priority queue)
+				p(v) = u
+			end if
+		end for
+		move u from foundNotHandled to foundHandled.
+	end loop
+	(for unfound v, d(v) = INFINITE )
+	return (d,p)
+end algorithm
+
+
+```
+
+
+### Depth First
+
+```
+algorithm DepthFirstSearch(G,s)
+#precond  : G is a directed or undirected graph and s is one of its nodes
+#postcond : The output is a depth-first search tree of G rooted at s
+
+begin::
+	foundHandled    = NULL
+	foundNotHandled = {(s,0)}
+	d(s) = 0, p(s) = NULL
+	#loop invariant: see above.
+	loop
+		exit when foundNotHandled = NULL
+		pop(u,i) off the stack foundNotHandled
+		if u has an (i+1)st edge <u,v>
+			push (u,i+1) onto foundNotHandled
+			if v has not previously been found then
+				p(v) = u
+				(u,v) is a tree edge
+				push(v,0) onto foundNotFound
+			else if v has been found but not completely handled then
+				(u,v) is a back edge
+			else (v has been completely handled)
+				(u,v) is a forward or cross edge
+			end if
+		else
+			move u to foundHandled.
+		end if
+	end loop
+	return (d,p)
+end algorithm
+
+
+```
+
+
+### BFS DFS
+
+#### BFS
+
+```
+algorithm BFS(G,s)
+#precond  : G=(V,E)
+#postcond : For all vertices u reachable from s, dist(u) is set to the distance from s to u.
+
+for all u in V:
+	dist(u) = INFINITE
+
+dist(s) = 0
+Queue = [s]
+
+while Q is not empty:
+	u = eject(Queue)
+	for all edges (u,v) in E:
+		if dist(v) = INFINITE:
+			inject(Queue,v)
+			dist(v) = dist(u) + 1
+
+```
+
+#### DFS
+
+```
+algorithm explore(G,s)
+#precond  : G is a directed or undirected graph and s is one of its nodes
+#postcond : visited(u) is set to true for all nodes u reachable from s
+
+visited(s) = true
+previsit(s)  //forward?back?cross edge?
+for each edge(s,t) in G:
+	if not visited(t): explore(t) #recursive
+postvisit(s) //forward?back?cross edge?
+
+
+algorithm DFS(G):
+
+for all v in G:
+	visited(v) = false
+
+for all v in G:
+	if not visited(v) : explore(v)
+
+```
+
