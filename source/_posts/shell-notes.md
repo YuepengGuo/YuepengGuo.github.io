@@ -247,3 +247,38 @@ pbcopy < ~/.ssh/id_rsa.pub
 ##show fingerprint
 ssh-keygen -lf /path/to/ssh/key
 ```
+
+
+
+### PGP
+
+```
+GPG_TTY=$(tty)
+export GPG_TTY
+
+gpg --version
+
+gpg --gen-key
+
+gpg --list-keys
+
+gpg --list-secret-keys
+
+#sign a file, it will create a file like temp.java.asc
+gpg -ab temp.java
+#verify signed file by public key
+gpg --verify temp.java.asc
+
+#distribute your public key
+gpg --keyserver hkp://pgp.mit.edu --send-keys C6EED57B
+
+#import public key to local
+gpg --keyserver hkp://pgp.mit.edu --recv-keys C6EED57B
+
+#mannually or automated by maven-gpg-plugin
+mvn clean deploy -Dgpg.passphrase=yourpassword
+
+#don't sign for dev version, unnecessary and time-consuming, wrap it in profile.
+```
+
+
