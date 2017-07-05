@@ -281,7 +281,12 @@ mvn clean deploy -Dgpg.passphrase=yourpassword
 #don't sign for dev version, unnecessary and time-consuming, wrap it in profile.
 ```
 
+
+
+
 ### GITHUB Search
+
+
 
 ```
 #range
@@ -301,14 +306,21 @@ amazing language:javascript
 
 #scope
 hello in:file
+
 hello in:path
+
 hello in:file,path
+
 display language:scss
+
 element language:xml
+
 hello language:markdown
+
 
 #filesize larger than 10kb
 function size:>10000 language:python
+
 
 #filename
 hello filename:pom.xml language:xml
