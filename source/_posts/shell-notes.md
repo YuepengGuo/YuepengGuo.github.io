@@ -281,4 +281,39 @@ mvn clean deploy -Dgpg.passphrase=yourpassword
 #don't sign for dev version, unnecessary and time-consuming, wrap it in profile.
 ```
 
+### GITHUB Search
 
+```
+#range
+cats created:2012-04-30..2012-08-20"
+cats pushed:2012-04-30..2012-08-20"
+
+#exclude certain words
+#hello , but not 'hello world'
+hello NOT world
+
+#exclude language -
+#cats not in javascript lang
+cats -language:javascript
+
+#search in language
+amazing language:javascript
+
+#scope
+hello in:file
+hello in:path
+hello in:file,path
+display language:scss
+element language:xml
+hello language:markdown
+
+#filesize larger than 10kb
+function size:>10000 language:python
+
+#filename
+hello filename:pom.xml language:xml
+
+#extension
+icon size>10000 extension:css
+
+```
