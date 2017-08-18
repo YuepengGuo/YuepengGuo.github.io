@@ -281,12 +281,7 @@ mvn clean deploy -Dgpg.passphrase=yourpassword
 #don't sign for dev version, unnecessary and time-consuming, wrap it in profile.
 ```
 
-
-
-
 ### GITHUB Search
-
-
 
 ```
 #range
