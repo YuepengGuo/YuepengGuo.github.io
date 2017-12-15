@@ -128,6 +128,12 @@ git remote add apache-git https://git-wip-us.apache.org/repos/asf/incubator-xxx.
 # remove ? by git commitspec
 git push origin :ShowOldVersion
 
+git push apache-git --delete the_remote_branch
+
+git push apache-git :refs/tags/12345
+git push apache-git --delete tagname
+
+
 ### flow
 git branch -D master
 git checkout apache-git/master -b master
